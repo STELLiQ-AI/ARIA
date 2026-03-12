@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  fragment_session.xml
+
+  Main recording interface layout (legacy).
+  Large record button, status text, timer, and live transcript.
+
+  Product: ARIA - AI-Powered Recording & Intelligent Analysis
+  Author:  STELLiQ Engineering
+  Version: 5.0.0
+-->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_gradient_main"
+    android:padding="@dimen/spacing_medium">
+
+    <!-- History Button (top right) -->
+    <ImageButton
+        android:id="@+id/button_history"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/ic_history"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/button_history"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:tint="@color/text_secondary" />
+
+    <!-- App Title -->
+    <TextView
+        android:id="@+id/text_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textSize="@dimen/text_size_heading"
+        android:textColor="@color/text_primary"
+        android:fontFamily="sans-serif-medium"
+        android:background="@null"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/spacing_large" />
+
+    <!-- Status Text -->
+    <TextView
+        android:id="@+id/text_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/status_ready"
+        android:textSize="@dimen/text_size_body"
+        android:textColor="@color/text_secondary"
+        android:background="@null"
+        app:layout_constraintTop_toBottomOf="@id/text_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/spacing_small"
+        tools:text="Ready to record" />
+
+    <!-- Timer (hidden when not recording) -->
+    <TextView
+        android:id="@+id/text_timer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size_timer"
+        android:textColor="@color/accent"
+        android:fontFamily="monospace"
+        android:visibility="gone"
+        android:background="@null"
+        app:layout_constraintTop_toBottomOf="@id/text_status"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/spacing_medium"
+        tools:text="02:45"
+        tools:visibility="visible" />
+
+    <!-- Record Button -->
+    <ImageButton
+        android:id="@+id/button_record"
+        android:layout_width="@dimen/record_button_size"
+        android:layout_height="@dimen/record_button_size"
+        android:src="@drawable/ic_mic"
+        android:background="@drawable/bg_record_button"
+        android:contentDescription="@string/button_record"
+        android:scaleType="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:tint="@color/text_on_accent" />
+
+    <!-- Live Transcript (scrollable, hidden when not recording) -->
+    <ScrollView
+        android:id="@+id/scroll_transcript"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/button_record"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/spacing_large"
+        tools:visibility="visible">
+
+        <TextView
+            android:id="@+id/text_transcript"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_body"
+            android:textColor="@color/text_primary"
+            android:padding="@dimen/spacing_medium"
+            android:background="@color/surface"
+            tools:text="This is the live transcript that will appear during recording..." />
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

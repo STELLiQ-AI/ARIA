@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Recording screen background — deep purple with subtle warmth -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <gradient
+        android:type="linear"
+        android:startColor="#0C0812"
+        android:centerColor="#100C18"
+        android:endColor="#140C20"
+        android:angle="270" />
+</shape>

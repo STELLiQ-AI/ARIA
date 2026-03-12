@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  item_recent_session.xml
+
+  Purpose: Recent session card for home screen feed.
+
+  Product: ARIA - AI-Powered Recording & Intelligent Analysis
+  Author:  STELLiQ Engineering
+  Version: 5.0.0
+-->
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:clickable="true"
+    android:focusable="true"
+    app:cardBackgroundColor="@color/surface_container"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="0dp"
+    app:strokeColor="@color/card_border"
+    app:strokeWidth="0dp"
+    app:rippleColor="@color/ripple">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <!-- Status Icon — Left accent -->
+        <ImageView
+            android:id="@+id/image_status"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_check_circle"
+            android:contentDescription="@string/status_icon"
+            app:tint="@color/status_success"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Title -->
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/text_primary"
+            android:textSize="15sp"
+            android:fontFamily="sans-serif-medium"
+            android:background="@null"
+            app:layout_constraintEnd_toStartOf="@id/text_duration"
+            app:layout_constraintStart_toEndOf="@id/image_status"
+            app:layout_constraintTop_toTopOf="@id/image_status"
+            tools:text="Team standup meeting" />
+
+        <!-- Duration -->
+        <TextView
+            android:id="@+id/text_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:textColor="@color/text_data"
+            android:textSize="13sp"
+            android:background="@null"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/text_title"
+            tools:text="15:32" />
+
+        <!-- Date -->
+        <TextView
+            android:id="@+id/text_date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/text_tertiary"
+            android:textSize="13sp"
+            android:fontFamily="sans-serif"
+            android:background="@null"
+            app:layout_constraintEnd_toStartOf="@id/text_word_count"
+            app:layout_constraintStart_toStartOf="@id/text_title"
+            app:layout_constraintTop_toBottomOf="@id/text_title"
+            tools:text="Mar 5, 2026 at 2:30 PM" />
+
+        <!-- Word Count -->
+        <TextView
+            android:id="@+id/text_word_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:textColor="@color/text_tertiary"
+            android:textSize="12sp"
+            android:background="@null"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/text_date"
+            tools:text="1,234 words" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ARIA Device Monitor | STELLiQ Technologies</title>
+<style>
+/* ── Reset & Base ───────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #060a13;
+  --bg-card: #0d1321;
+  --bg-card-alt: #111827;
+  --border: #1e293b;
+  --accent: #00d4ff;
+  --accent-dim: #0e7490;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --text: #e2e8f0;
+  --text-sec: #94a3b8;
+  --text-muted: #475569;
+  --font-mono: 'SF Mono', 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── Header ─────────────────────────────────────────────────────── */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg, #0d1321 0%, var(--bg) 100%);
+}
+
+.logo-group {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.logo-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--accent) 0%, #0ea5e9 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 16px;
+  color: #000;
+  letter-spacing: -1px;
+}
+
+.logo-text h1 {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--text);
+}
+
+.logo-text .subtitle {
+  font-size: 11px;
+  color: var(--text-sec);
+  letter-spacing: 0.5px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.connection-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-family: var(--font-mono);
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--danger);
+  transition: background 0.3s;
+}
+
+.status-dot.connected {
+  background: var(--success);
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { box-shadow: 0 0 8px rgba(16, 185, 129, 0.4); }
+  50% { box-shadow: 0 0 16px rgba(16, 185, 129, 0.8); }
+}
+
+.stelliq-badge {
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+/* ── Device Info Bar ────────────────────────────────────────────── */
+.device-bar {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 10px 24px;
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+  color: var(--text-sec);
+  font-family: var(--font-mono);
+}
+
+.device-bar .spec {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.device-bar .spec-label {
+  color: var(--text-muted);
+}
+
+.device-bar .spec-value {
+  color: var(--accent);
+}
+
+/* ── Grid Layout ────────────────────────────────────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  padding: 16px 24px 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* ── Cards ──────────────────────────────────────────────────────── */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-title {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.card-title::before {
+  content: '';
+  width: 3px;
+  height: 14px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+/* ── Pipeline State (full width) ────────────────────────────────── */
+.pipeline-card {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 24px;
+  transition: box-shadow 0.5s, border-color 0.5s;
+}
+
+.pipeline-state {
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: 4px;
+  font-family: var(--font-mono);
+  margin: 8px 0;
+  transition: color 0.3s;
+}
+
+.pipeline-detail {
+  font-size: 12px;
+  color: var(--text-sec);
+  font-family: var(--font-mono);
+  max-width: 600px;
+  margin: 0 auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pipeline-card[data-state="RECORDING"] {
+  border-color: #065f46;
+  animation: glow-recording 2s ease-in-out infinite;
+}
+
+.pipeline-card[data-state="RECORDING"] .pipeline-state { color: var(--success); }
+
+.pipeline-card[data-state="SUMMARIZING"] {
+  border-color: #92400e;
+  animation: glow-summarizing 1.5s ease-in-out infinite;
+}
+
+.pipeline-card[data-state="SUMMARIZING"] .pipeline-state { color: var(--warning); }
+
+.pipeline-card[data-state="COMPLETE"] {
+  border-color: var(--accent-dim);
+}
+
+.pipeline-card[data-state="COMPLETE"] .pipeline-state { color: var(--accent); }
+
+.pipeline-card[data-state="IDLE"] .pipeline-state { color: var(--text-muted); }
+.pipeline-card[data-state="ERROR"] .pipeline-state { color: var(--danger); }
+.pipeline-card[data-state="INITIALIZING"] .pipeline-state { color: #818cf8; }
+
+@keyframes glow-recording {
+  0%, 100% { box-shadow: 0 0 20px rgba(16, 185, 129, 0.1), inset 0 0 20px rgba(16, 185, 129, 0.03); }
+  50% { box-shadow: 0 0 40px rgba(16, 185, 129, 0.25), inset 0 0 40px rgba(16, 185, 129, 0.06); }
+}
+
+@keyframes glow-summarizing {
+  0%, 100% { box-shadow: 0 0 20px rgba(245, 158, 11, 0.1), inset 0 0 20px rgba(245, 158, 11, 0.03); }
+  50% { box-shadow: 0 0 40px rgba(245, 158, 11, 0.3), inset 0 0 40px rgba(245, 158, 11, 0.06); }
+}
+
+/* ── CPU Cores (full width) ─────────────────────────────────────── */
+.cpu-card {
+  grid-column: 1 / -1;
+}
+
+.cpu-cores {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 12px;
+}
+
+.core {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.core-label {
+  font-size: 10px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  letter-spacing: 0.5px;
+}
+
+.core-type {
+  font-size: 9px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  opacity: 0.7;
+}
+
+.core-bar-track {
+  width: 100%;
+  height: 100px;
+  background: #0a101e;
+  border-radius: 6px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #1a2233;
+}
+
+.core-bar-fill {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(0deg, var(--accent-dim), var(--accent));
+  border-radius: 0 0 5px 5px;
+  transition: height 0.8s ease-out, background 0.5s;
+  min-height: 2px;
+}
+
+.core-bar-fill.high {
+  background: linear-gradient(0deg, #b45309, var(--warning));
+}
+
+.core-bar-fill.critical {
+  background: linear-gradient(0deg, #991b1b, var(--danger));
+}
+
+.core-usage {
+  font-size: 14px;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  color: var(--text);
+  transition: color 0.3s;
+}
+
+.core-freq {
+  font-size: 11px;
+  font-family: var(--font-mono);
+  color: var(--text-sec);
+}
+
+/* ── GPU Card ───────────────────────────────────────────────────── */
+.gpu-gauge-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.gpu-gauge {
+  width: 220px;
+  height: 130px;
+}
+
+.gpu-arc-bg {
+  fill: none;
+  stroke: #1a2233;
+  stroke-width: 14;
+  stroke-linecap: round;
+}
+
+.gpu-arc-fill {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 14;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.8s ease-out, stroke 0.5s;
+}
+
+.gpu-arc-fill.high { stroke: var(--warning); }
+.gpu-arc-fill.critical { stroke: var(--danger); }
+
+.gpu-value {
+  font-size: 36px;
+  font-weight: 800;
+  font-family: var(--font-mono);
+  fill: var(--text);
+}
+
+.gpu-label {
+  font-size: 11px;
+  fill: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.gpu-freq-info {
+  font-size: 13px;
+  font-family: var(--font-mono);
+  color: var(--text-sec);
+  text-align: center;
+}
+
+.gpu-freq-value {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* ── Memory Card ────────────────────────────────────────────────── */
+.mem-section {
+  margin-bottom: 18px;
+}
+
+.mem-section:last-child { margin-bottom: 0; }
+
+.mem-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 6px;
+}
+
+.mem-name {
+  font-size: 13px;
+  color: var(--text-sec);
+}
+
+.mem-value {
+  font-size: 14px;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--text);
+}
+
+.mem-bar-track {
+  width: 100%;
+  height: 10px;
+  background: #0a101e;
+  border-radius: 5px;
+  overflow: hidden;
+  border: 1px solid #1a2233;
+}
+
+.mem-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-dim), var(--accent));
+  border-radius: 4px;
+  transition: width 0.8s ease-out;
+}
+
+.mem-bar-fill.high {
+  background: linear-gradient(90deg, #b45309, var(--warning));
+}
+
+.mem-bar-fill.critical {
+  background: linear-gradient(90deg, #991b1b, var(--danger));
+}
+
+.mem-breakdown {
+  display: flex;
+  gap: 16px;
+  margin-top: 8px;
+  font-size: 11px;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+}
+
+.mem-breakdown span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.mem-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* ── Thermal Card ───────────────────────────────────────────────── */
+.thermal-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.thermal-row:last-child { margin-bottom: 0; }
+
+.thermal-label {
+  font-size: 12px;
+  color: var(--text-sec);
+  width: 50px;
+  font-family: var(--font-mono);
+}
+
+.thermal-bar-track {
+  flex: 1;
+  height: 8px;
+  background: #0a101e;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid #1a2233;
+}
+
+.thermal-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.8s ease-out, background 0.5s;
+  background: var(--success);
+}
+
+.thermal-bar-fill.warm { background: var(--warning); }
+.thermal-bar-fill.hot { background: var(--danger); }
+
+.thermal-value {
+  font-size: 14px;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  width: 60px;
+  text-align: right;
+  transition: color 0.3s;
+}
+
+/* ── Battery Card ───────────────────────────────────────────────── */
+.battery-level {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.battery-pct {
+  font-size: 36px;
+  font-weight: 800;
+  font-family: var(--font-mono);
+}
+
+.battery-bar-track {
+  flex: 1;
+  height: 22px;
+  background: #0a101e;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid #1a2233;
+  position: relative;
+}
+
+.battery-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--success), #34d399);
+  border-radius: 5px;
+  transition: width 0.8s ease-out;
+}
+
+.battery-bar-fill.low {
+  background: linear-gradient(90deg, #dc2626, var(--danger));
+}
+
+.battery-stats {
+  display: flex;
+  gap: 24px;
+  font-size: 13px;
+  font-family: var(--font-mono);
+}
+
+.battery-stat-label {
+  color: var(--text-muted);
+  margin-right: 6px;
+}
+
+.battery-stat-value {
+  color: var(--text-sec);
+}
+
+/* ── Activity Log (full width) ──────────────────────────────────── */
+.log-card {
+  grid-column: 1 / -1;
+}
+
+.log-entries {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.8;
+  color: var(--text-sec);
+  background: #080c16;
+  border: 1px solid #1a2233;
+  border-radius: 8px;
+  padding: 12px 16px;
+  max-height: 140px;
+  overflow-y: auto;
+}
+
+.log-entry {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.log-entry .log-tag {
+  color: var(--accent);
+}
+
+.log-entry .log-state {
+  color: var(--warning);
+  font-weight: 600;
+}
+
+/* ── Disconnected Overlay ───────────────────────────────────────── */
+.disconnected-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(6, 10, 19, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  backdrop-filter: blur(4px);
+  transition: opacity 0.3s;
+}
+
+.disconnected-overlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.disconnected-box {
+  text-align: center;
+  padding: 40px;
+}
+
+.disconnected-box h2 {
+  font-size: 24px;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.disconnected-box p {
+  color: var(--text-sec);
+  font-size: 14px;
+}
+
+.disconnected-box .spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 20px auto;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ── Header ──────────────────────────────────────────────────── -->
+<header>
+  <div class="logo-group">
+    <div class="logo-icon">A</div>
+    <div class="logo-text">
+      <h1>ARIA DEVICE MONITOR</h1>
+      <div class="subtitle">Real-Time On-Device AI Performance</div>
+    </div>
+  </div>
+  <div class="header-right">
+    <div class="connection-status">
+      <div class="status-dot" id="statusDot"></div>
+      <span id="statusText">Disconnected</span>
+    </div>
+    <div class="stelliq-badge">STELLiQ Technologies</div>
+  </div>
+</header>
+
+<!-- ── Device Spec Bar ─────────────────────────────────────────── -->
+<div class="device-bar">
+  <div class="spec">
+    <span class="spec-label">Device</span>
+    <span class="spec-value">Samsung Galaxy S24 Ultra</span>
+  </div>
+  <div class="spec">
+    <span class="spec-label">SoC</span>
+    <span class="spec-value">Snapdragon 8 Gen 3</span>
+  </div>
+  <div class="spec">
+    <span class="spec-label">GPU</span>
+    <span class="spec-value">Adreno 750</span>
+  </div>
+  <div class="spec">
+    <span class="spec-label">RAM</span>
+    <span class="spec-value">12 GB LPDDR5X</span>
+  </div>
+  <div class="spec">
+    <span class="spec-label">Mode</span>
+    <span class="spec-value" style="color: var(--success);">Air-Gapped (No Cloud)</span>
+  </div>
+</div>
+
+<!-- ── Dashboard Grid ──────────────────────────────────────────── -->
+<main class="grid">
+
+  <!-- Pipeline State -->
+  <section class="card pipeline-card" id="pipelineCard" data-state="IDLE">
+    <div class="card-title">Pipeline State</div>
+    <div class="pipeline-state" id="pipelineState">IDLE</div>
+    <div class="pipeline-detail" id="pipelineDetail">Waiting for session...</div>
+  </section>
+
+  <!-- CPU Cores -->
+  <section class="card cpu-card">
+    <div class="card-title">CPU Cores — Snapdragon 8 Gen 3</div>
+    <div class="cpu-cores" id="cpuCores">
+      <!-- Generated by JS -->
+    </div>
+  </section>
+
+  <!-- GPU -->
+  <section class="card">
+    <div class="card-title">Adreno 750 GPU</div>
+    <div class="gpu-gauge-container">
+      <svg class="gpu-gauge" viewBox="0 0 220 130">
+        <!-- Background arc -->
+        <path class="gpu-arc-bg"
+              d="M 25 105 A 85 85 0 0 1 195 105" />
+        <!-- Value arc -->
+        <path class="gpu-arc-fill" id="gpuArc"
+              d="M 25 105 A 85 85 0 0 1 195 105"
+              stroke-dasharray="267"
+              stroke-dashoffset="267" />
+        <!-- Center value -->
+        <text class="gpu-value" id="gpuPct"
+              x="110" y="90" text-anchor="middle">0%</text>
+        <text class="gpu-label"
+              x="110" y="108" text-anchor="middle">GPU Busy</text>
+      </svg>
+      <div class="gpu-freq-info">
+        <span class="gpu-freq-value" id="gpuFreq">0</span> /
+        <span id="gpuMaxFreq">0</span> MHz
+      </div>
+    </div>
+  </section>
+
+  <!-- Memory -->
+  <section class="card">
+    <div class="card-title">Memory</div>
+
+    <div class="mem-section">
+      <div class="mem-label">
+        <span class="mem-name">System RAM</span>
+        <span class="mem-value"><span id="sysMemUsed">0</span> / <span id="sysMemTotal">0</span> MB</span>
+      </div>
+      <div class="mem-bar-track">
+        <div class="mem-bar-fill" id="sysMemBar" style="width: 0%"></div>
+      </div>
+    </div>
+
+    <div class="mem-section">
+      <div class="mem-label">
+        <span class="mem-name">ARIA Process</span>
+        <span class="mem-value"><span id="ariaMemTotal">0</span> MB</span>
+      </div>
+      <div class="mem-bar-track">
+        <div class="mem-bar-fill" id="ariaMemBar" style="width: 0%"></div>
+      </div>
+      <div class="mem-breakdown">
+        <span><span class="mem-dot" style="background: #06b6d4"></span> Native <span id="ariaMemNative">0</span></span>
+        <span><span class="mem-dot" style="background: #8b5cf6"></span> Java <span id="ariaMemJava">0</span></span>
+        <span><span class="mem-dot" style="background: #f59e0b"></span> Graphics <span id="ariaMemGfx">0</span></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Thermal -->
+  <section class="card">
+    <div class="card-title">Thermal</div>
+
+    <div class="thermal-row">
+      <span class="thermal-label">CPU</span>
+      <div class="thermal-bar-track">
+        <div class="thermal-bar-fill" id="thermCpuBar" style="width: 0%"></div>
+      </div>
+      <span class="thermal-value" id="thermCpu">--</span>
+    </div>
+
+    <div class="thermal-row">
+      <span class="thermal-label">GPU</span>
+      <div class="thermal-bar-track">
+        <div class="thermal-bar-fill" id="thermGpuBar" style="width: 0%"></div>
+      </div>
+      <span class="thermal-value" id="thermGpu">--</span>
+    </div>
+
+    <div class="thermal-row">
+      <span class="thermal-label">Skin</span>
+      <div class="thermal-bar-track">
+        <div class="thermal-bar-fill" id="thermSkinBar" style="width: 0%"></div>
+      </div>
+      <span class="thermal-value" id="thermSkin">--</span>
+    </div>
+  </section>
+
+  <!-- Battery -->
+  <section class="card">
+    <div class="card-title">Battery</div>
+    <div class="battery-level">
+      <span class="battery-pct" id="battLevel">--%</span>
+      <div class="battery-bar-track">
+        <div class="battery-bar-fill" id="battBar" style="width: 0%"></div>
+      </div>
+    </div>
+    <div class="battery-stats">
+      <div>
+        <span class="battery-stat-label">Current</span>
+        <span class="battery-stat-value" id="battCurrent">-- mA</span>
+      </div>
+      <div>
+        <span class="battery-stat-label">Temp</span>
+        <span class="battery-stat-value" id="battTemp">--</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Activity Log -->
+  <section class="card log-card">
+    <div class="card-title">Activity Log</div>
+    <div class="log-entries" id="logEntries">
+      <div class="log-entry" style="color: var(--text-muted)">Waiting for device connection...</div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ── Disconnected Overlay ────────────────────────────────────── -->
+<div class="disconnected-overlay" id="overlay">
+  <div class="disconnected-box">
+    <div class="spinner"></div>
+    <h2>Connecting to Device</h2>
+    <p>Waiting for Samsung Galaxy S24 Ultra via ADB...</p>
+    <p style="margin-top: 8px; font-family: var(--font-mono); font-size: 12px; color: var(--text-muted);">
+      Ensure USB debugging is enabled and device is connected
+    </p>
+  </div>
+</div>
+
+<!-- ── JavaScript ──────────────────────────────────────────────── -->
+<script>
+(function() {
+  'use strict';
+
+  // ── DOM refs ──
+  const $ = id => document.getElementById(id);
+  const overlay = $('overlay');
+  const statusDot = $('statusDot');
+  const statusText = $('statusText');
+  const pipelineCard = $('pipelineCard');
+  const pipelineState = $('pipelineState');
+  const pipelineDetail = $('pipelineDetail');
+  const cpuContainer = $('cpuCores');
+  const gpuArc = $('gpuArc');
+  const gpuPct = $('gpuPct');
+  const gpuFreq = $('gpuFreq');
+  const gpuMaxFreq = $('gpuMaxFreq');
+  const sysMemUsed = $('sysMemUsed');
+  const sysMemTotal = $('sysMemTotal');
+  const sysMemBar = $('sysMemBar');
+  const ariaMemTotal = $('ariaMemTotal');
+  const ariaMemBar = $('ariaMemBar');
+  const ariaMemNative = $('ariaMemNative');
+  const ariaMemJava = $('ariaMemJava');
+  const ariaMemGfx = $('ariaMemGfx');
+  const logEntries = $('logEntries');
+
+  // ── Constants ──
+  const GPU_ARC_LENGTH = 267;  // semicircle arc length for r=85
+  const CORE_TYPES = ['A520','A520','A720','A720','A720','A720','A720','X4'];
+  const CORE_LABELS = ['Eff','Eff','Mid','Mid','Perf','Perf','Perf','Prime'];
+  const POLL_MS = 2000;
+
+  // ── State ──
+  let wasConnected = false;
+  let logHistory = [];
+
+  // ── Build CPU core elements ──
+  function initCPU() {
+    let html = '';
+    for (let i = 0; i < 8; i++) {
+      html += `
+        <div class="core">
+          <div class="core-label">Core ${i}</div>
+          <div class="core-type">${CORE_TYPES[i]} · ${CORE_LABELS[i]}</div>
+          <div class="core-bar-track">
+            <div class="core-bar-fill" id="cpuBar${i}" style="height: 0%"></div>
+          </div>
+          <div class="core-usage" id="cpuUsage${i}">0%</div>
+          <div class="core-freq" id="cpuFreq${i}">0 MHz</div>
+        </div>`;
+    }
+    cpuContainer.innerHTML = html;
+  }
+
+  // ── Color helpers ──
+  function usageClass(pct) {
+    if (pct >= 85) return 'critical';
+    if (pct >= 60) return 'high';
+    return '';
+  }
+
+  function thermalClass(temp) {
+    if (temp >= 50) return 'hot';
+    if (temp >= 40) return 'warm';
+    return '';
+  }
+
+  function thermalColor(temp) {
+    if (temp >= 50) return 'var(--danger)';
+    if (temp >= 40) return 'var(--warning)';
+    return 'var(--text)';
+  }
+
+  // ── Update functions ──
+
+  function updateConnection(connected) {
+    statusDot.className = 'status-dot' + (connected ? ' connected' : '');
+    statusText.textContent = connected ? 'Connected' : 'Disconnected';
+    overlay.className = 'disconnected-overlay' + (connected ? ' hidden' : '');
+    wasConnected = connected;
+  }
+
+  function updatePipeline(pipeline) {
+    const state = pipeline.state || 'UNKNOWN';
+    pipelineCard.dataset.state = state;
+    pipelineState.textContent = state;
+
+    const descriptions = {
+      'IDLE': 'Waiting for session...',
+      'INITIALIZING': 'Loading AI models...',
+      'RECORDING': 'Whisper ASR active — transcribing on CPU (6 threads)',
+      'SUMMARIZING': 'Llama 3.2 generating AAR summary on Adreno GPU',
+      'COMPLETE': 'Summary ready',
+      'ERROR': 'Error occurred',
+      'UNKNOWN': 'Checking pipeline status...'
+    };
+
+    pipelineDetail.textContent = descriptions[state] || pipeline.detail || '';
+  }
+
+  function updateCPU(cpu) {
+    if (!cpu || !cpu.cores) return;
+    cpu.cores.forEach((core, i) => {
+      const bar = $('cpuBar' + i);
+      const usage = $('cpuUsage' + i);
+      const freq = $('cpuFreq' + i);
+      if (!bar) return;
+
+      const pct = Math.round(core.usage);
+      bar.style.height = pct + '%';
+      bar.className = 'core-bar-fill ' + usageClass(pct);
+      usage.textContent = pct + '%';
+      usage.style.color = pct >= 85 ? 'var(--danger)' : pct >= 60 ? 'var(--warning)' : 'var(--text)';
+      freq.textContent = core.freq_mhz + ' MHz';
+    });
+  }
+
+  function updateGPU(gpu) {
+    if (!gpu) return;
+    const pct = Math.round(gpu.busy_pct);
+    const offset = GPU_ARC_LENGTH * (1 - pct / 100);
+
+    gpuArc.setAttribute('stroke-dashoffset', offset);
+    gpuArc.className.baseVal = 'gpu-arc-fill ' + usageClass(pct);
+    gpuPct.textContent = pct + '%';
+    gpuFreq.textContent = gpu.freq_mhz;
+    gpuMaxFreq.textContent = gpu.max_mhz;
+  }
+
+  function updateMemory(sysMem, ariaMem) {
+    if (sysMem) {
+      const total = sysMem.total_mb;
+      const used = sysMem.used_mb;
+      const pct = total > 0 ? (used / total * 100) : 0;
+
+      sysMemUsed.textContent = formatMB(used);
+      sysMemTotal.textContent = formatMB(total);
+      sysMemBar.style.width = pct + '%';
+      sysMemBar.className = 'mem-bar-fill ' + (pct >= 90 ? 'critical' : pct >= 75 ? 'high' : '');
+    }
+
+    if (ariaMem) {
+      const total = ariaMem.total_mb || 0;
+      // Scale against 8 GB (approximate max for ARIA during LLM)
+      const pct = Math.min(100, (total / 8000) * 100);
+
+      ariaMemTotal.textContent = total >= 1024 ? (total / 1024).toFixed(1) + ' GB' : Math.round(total) + ' MB';
+      ariaMemBar.style.width = pct + '%';
+      ariaMemBar.className = 'mem-bar-fill ' + (total >= 6000 ? 'critical' : total >= 3000 ? 'high' : '');
+      ariaMemNative.textContent = formatMB(ariaMem.native_mb || 0);
+      ariaMemJava.textContent = formatMB(ariaMem.java_mb || 0);
+      ariaMemGfx.textContent = formatMB(ariaMem.graphics_mb || 0);
+    }
+  }
+
+  function updateThermal(thermal) {
+    if (!thermal) return;
+
+    function setTherm(barId, valueId, temp) {
+      const bar = $(barId);
+      const val = $(valueId);
+      if (!bar || !val) return;
+
+      const pct = Math.min(100, (temp / 70) * 100);  // 70°C = max scale
+      bar.style.width = pct + '%';
+      bar.className = 'thermal-bar-fill ' + thermalClass(temp);
+      val.textContent = temp > 0 ? temp.toFixed(1) + '°C' : '--';
+      val.style.color = thermalColor(temp);
+    }
+
+    setTherm('thermCpuBar', 'thermCpu', thermal.cpu_c);
+    setTherm('thermGpuBar', 'thermGpu', thermal.gpu_c);
+    setTherm('thermSkinBar', 'thermSkin', thermal.skin_c);
+  }
+
+  function updateBattery(batt) {
+    if (!batt) return;
+    const level = batt.level || 0;
+
+    $('battLevel').textContent = level + '%';
+    const bar = $('battBar');
+    bar.style.width = level + '%';
+    bar.className = 'battery-bar-fill' + (level <= 20 ? ' low' : '');
+    $('battCurrent').textContent = batt.current_ma + ' mA';
+    $('battTemp').textContent = batt.temp_c ? batt.temp_c + '°C' : '--';
+  }
+
+  function updateLog(pipeline) {
+    if (!pipeline || !pipeline.detail) return;
+    const detail = pipeline.detail;
+
+    // Avoid duplicate entries
+    if (logHistory.length > 0 && logHistory[logHistory.length - 1] === detail) return;
+
+    logHistory.push(detail);
+    if (logHistory.length > 50) logHistory.shift();
+
+    // Format log entries
+    let html = '';
+    logHistory.forEach(entry => {
+      // Highlight tags and state transitions
+      let formatted = entry
+        .replace(/\[(.*?)\]/g, '[<span class="log-tag">$1</span>]')
+        .replace(/(IDLE|RECORDING|SUMMARIZING|COMPLETE|ERROR|INITIALIZING)/g,
+                 '<span class="log-state">$1</span>');
+      html += '<div class="log-entry">' + formatted + '</div>';
+    });
+    logEntries.innerHTML = html;
+    logEntries.scrollTop = logEntries.scrollHeight;
+  }
+
+  // ── Helpers ──
+
+  function formatMB(mb) {
+    if (mb >= 1024) return (mb / 1024).toFixed(1) + ' GB';
+    return Math.round(mb) + ' MB';
+  }
+
+  // ── Poll loop ──
+
+  async function poll() {
+    try {
+      const resp = await fetch('/metrics', { cache: 'no-store' });
+      const data = await resp.json();
+
+      updateConnection(data.connected);
+
+      if (data.connected) {
+        updatePipeline(data.pipeline || {});
+        updateCPU(data.cpu);
+        updateGPU(data.gpu);
+        updateMemory(data.sys_mem, data.aria_mem);
+        updateThermal(data.thermal);
+        updateBattery(data.battery);
+        updateLog(data.pipeline);
+      }
+    } catch (e) {
+      updateConnection(false);
+    }
+  }
+
+  // ── Init ──
+  initCPU();
+  poll();
+  setInterval(poll, POLL_MS);
+
+})();
+</script>
+
+</body>
+</html>

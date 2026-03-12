@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Stop button — subtle warm surface with hairline border and ripple -->
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="#20F04040">
+    <item android:id="@android:id/mask">
+        <shape android:shape="oval">
+            <solid android:color="#FFFFFF" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="#201418" />
+            <stroke
+                android:width="0.5dp"
+                android:color="#30F04040" />
+        </shape>
+    </item>
+</ripple>

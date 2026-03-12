@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    strings.xml
+
+    All user-facing strings for ARIA commercial app.
+    Merged from demo and commercial reference designs.
+
+    Product: ARIA - AI-Powered Recording & Intelligent Analysis
+    Author:  STELLiQ Engineering
+    Version: 1.0.0
+-->
+<resources>
+    <!-- App Identity -->
+    <string name="app_name">ARIA</string>
+    <string name="app_full_name">AI-Powered Recording &amp; Intelligent Analysis</string>
+    <string name="app_version">v1.0.0</string>
+    <string name="product_name">ARIA</string>
+    <string name="product_name_acronym">A.R.I.A.</string>
+    <string name="company_name">STELLiQ TECHNOLOGIES</string>
+
+    <!-- Splash Screen -->
+    <string name="stelliq_logo_desc">STELLiQ Technologies Logo</string>
+    <string name="splash_presents">presents</string>
+    <string name="splash_tagline">AI-Powered Recording &amp; Intelligent Analysis</string>
+    <string name="splash_acronym_expansion">Automated Recording &amp; Intelligent Analysis</string>
+    <string name="splash_description">Transform your meetings into actionable intelligence with on-device AI. Private. Secure. Offline.</string>
+    <string name="splash_loading_init">Initializing AI Engine</string>
+    <string name="splash_loading_models">Loading Models</string>
+    <string name="splash_loading_ready">Ready</string>
+    <string name="splash_version">Version 1.0.0</string>
+    <string name="splash_copyright">© 2026 STELLiQ Technologies, LLC. All rights reserved.</string>
+
+    <!-- Navigation -->
+    <string name="nav_home">Home</string>
+    <string name="nav_sessions">Recordings</string>
+    <string name="nav_settings">Settings</string>
+    <string name="title_home">Home</string>
+    <string name="title_sessions">Sessions</string>
+    <string name="title_settings">Settings</string>
+
+    <!-- Home Screen -->
+    <string name="home_welcome">Welcome to ARIA</string>
+    <string name="home_subtitle">Privacy-first meeting transcription</string>
+    <string name="home_start_recording">Start Recording</string>
+    <string name="home_recent_sessions">Recent Recordings</string>
+    <string name="home_view_all">View All</string>
+    <string name="home_no_sessions">No recordings yet</string>
+    <string name="home_no_sessions_hint">Tap the button above to start your first recording</string>
+    <string name="welcome_title">Welcome to ARIA</string>
+    <string name="welcome_subtitle">Privacy-first meeting transcription</string>
+    <string name="btn_start_recording">Start Recording</string>
+    <string name="recent_sessions">Recent Sessions</string>
+    <string name="view_all">View All</string>
+    <string name="empty_sessions_icon">No recordings icon</string>
+    <string name="empty_sessions_subtitle">No sessions yet. Start recording to create one.</string>
+
+    <!-- Recording Screen -->
+    <string name="recording_title">Recording</string>
+    <string name="title_recording">Recording</string>
+    <string name="title_session_detail">Session Details</string>
+    <string name="recording_paused">Paused</string>
+    <string name="recording_processing">Processing…</string>
+    <string name="recording_elapsed">Elapsed Time</string>
+    <string name="recording_stop">Stop</string>
+    <string name="recording_pause">Pause</string>
+    <string name="recording_resume">Resume</string>
+    <string name="recording_cancel">Cancel</string>
+    <string name="recording_cancel_confirm_title">Cancel Recording?</string>
+    <string name="recording_cancel_confirm_message">This will discard the current recording. Are you sure?</string>
+    <string name="recording_discard">Discard</string>
+    <string name="recording_keep_recording">Keep Recording</string>
+    <string name="recording_device_you">This Device (You)</string>
+    <string name="recording_add_device">Add Device</string>
+    <string name="recording_connected_devices">Connected Devices</string>
+    <string name="recording_live_transcript">Live Transcript</string>
+    <string name="recording_waiting_speech">Waiting for speech…</string>
+    <string name="btn_back">Back</string>
+    <string name="status_ready">Ready to record</string>
+    <string name="btn_invite_device">Invite Device</string>
+    <string name="participants_count">%d Participant(s)</string>
+    <string name="transcript_placeholder">Transcript will appear here...</string>
+    <string name="btn_pause">Pause</string>
+    <string name="btn_stop">Stop</string>
+    <string name="status_icon">●</string>
+
+    <!-- Sessions Screen -->
+    <string name="search_recordings">Search recordings…</string>
+    <string name="empty_sessions_title">No Recordings</string>
+    <string name="empty_sessions_message">Your recordings will appear here.\nStart a new recording from the Home screen.</string>
+    <string name="no_results_title">No Results</string>
+    <string name="no_results_message">No recordings match your search.</string>
+
+    <!-- Session Detail Screen -->
+    <string name="tab_summary">Summary</string>
+    <string name="tab_transcript">Transcript</string>
+    <string name="action_back">Go back</string>
+    <string name="btn_share">Share</string>
+    <string name="btn_export">Export</string>
+    <string name="btn_delete">Delete</string>
+    <string name="word_count_format">%1$d words</string>
+    <string name="no_summary">No summary available</string>
+    <string name="regenerate_summary">Regenerate Summary</string>
+    <string name="regenerate_confirm_title">Regenerate Summary?</string>
+    <string name="regenerate_confirm_message">This will re-run the AI summary engine on the existing transcript. The current summary will be replaced.</string>
+    <string name="regenerate_started">Regenerating summary\u2026</string>
+    <string name="export_format_title">Export Format</string>
+    <string name="export_text">Plain Text (.txt)</string>
+    <string name="export_markdown">Markdown (.md)</string>
+    <string name="export_pdf">PDF (.pdf)</string>
+    <string name="delete_confirm_title">Delete Recording?</string>
+    <string name="delete_confirm_message">This action cannot be undone.</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_category_profile">Profile</string>
+    <string name="settings_speaker_name">Your Name</string>
+    <string name="settings_speaker_name_hint">Enter your name for speaker attribution</string>
+    <string name="settings_category_summary">Summary Templates</string>
+    <string name="settings_template">Default Template</string>
+    <string name="settings_template_military">Military AAR</string>
+    <string name="settings_template_retrospective">Retrospective (AAR)</string>
+    <string name="settings_template_incident">Incident Postmortem</string>
+    <string name="settings_template_simple">Simple Summary</string>
+    <string name="settings_template_choose">Choose how ARIA structures your summaries</string>
+    <string name="settings_category_storage">Storage</string>
+    <string name="settings_storage_used">Storage Used</string>
+    <string name="settings_recordings">Recordings</string>
+    <string name="settings_clear_cache">Clear Cache</string>
+    <string name="settings_delete_all">Delete All Recordings</string>
+    <string name="settings_delete_all_warning">This cannot be undone</string>
+    <string name="settings_category_about">About</string>
+    <string name="settings_about">About ARIA</string>
+
+    <!-- Model Management -->
+    <string name="settings_category_models">AI Models</string>
+    <string name="settings_models_status">Model Status</string>
+    <string name="settings_models_all_ready">All models ready</string>
+    <string name="settings_models_missing">%d model(s) missing</string>
+    <string name="settings_models_download">Get Model</string>
+    <string name="settings_model_installed">Installed</string>
+    <string name="settings_model_missing">Not installed</string>
+    <string name="settings_model_downloading">Downloading…</string>
+    <string name="settings_model_copying">Copying…</string>
+    <string name="settings_model_progress">%1$d%% (%2$s / %3$s)</string>
+    <string name="settings_model_llm_name">AI Summary Engine</string>
+    <string name="settings_model_llm_size">~4.6 GB</string>
+    <string name="settings_model_whisper_name">Whisper Small.en (Transcription)</string>
+    <string name="settings_model_whisper_size">~488 MB</string>
+    <string name="settings_model_vad_name">Silero VAD (Voice Detection)</string>
+    <string name="settings_model_vad_size">~2 MB</string>
+    <string name="settings_models_download_title">Download AI Model?</string>
+    <string name="settings_models_download_message">This will download the Llama 3.1 8B model (~4.6 GB) for AI-powered summarization.\n\nMake sure you have:\n• A stable WiFi connection\n• At least 5 GB of free storage\n\nThe download will continue in the background.</string>
+    <string name="settings_models_download_button">Download Now</string>
+
+    <!-- Model Download Screen (Legacy compatibility) -->
+    <string name="download_title">ARIA AI Engine</string>
+    <string name="download_model_name">ARIA AAR 1B</string>
+    <string name="download_model_size">771 MB</string>
+    <string name="download_description">Required for AAR summarization</string>
+    <string name="download_info">Download once. Works fully offline after that.</string>
+    <string name="download_wifi_recommendation">WiFi recommended for download.</string>
+    <string name="download_button">Download AI Engine</string>
+    <string name="download_button_retry">Retry Download</string>
+    <string name="download_model_info">@string/download_info</string>
+    <string name="download_status_not_started">Tap to download</string>
+    <string name="button_download">@string/download_button</string>
+    <string name="button_retry">@string/download_button_retry</string>
+    <string name="download_button_cancel">Cancel Download</string>
+    <string name="download_preparing">Preparing download…</string>
+    <string name="download_in_progress">Downloading…</string>
+    <string name="download_paused">Download paused</string>
+    <string name="download_complete">Download complete</string>
+    <string name="download_failed">Download failed</string>
+    <string name="download_verifying">Verifying download…</string>
+    <string name="download_error_network">Network error. Check your connection.</string>
+    <string name="download_error_storage">Insufficient storage space.</string>
+    <string name="download_error_verification">File verification failed. Please retry.</string>
+    <string name="download_status_progress">Downloading… %1$d%%</string>
+    <string name="download_status_error">%1$s</string>
+
+    <!-- Common Actions -->
+    <string name="action_ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm">Confirm</string>
+    <string name="save">Save</string>
+    <string name="done">Done</string>
+    <string name="retry">Retry</string>
+
+    <!-- Permissions -->
+    <string name="permission_audio_title">Microphone Permission Required</string>
+    <string name="permission_audio_message">ARIA needs access to your microphone to record and transcribe meetings.</string>
+    <string name="permission_grant">Grant Permission</string>
+    <string name="permission_settings">Open Settings</string>
+    <string name="audio_permission_rationale">ARIA needs microphone access to record and transcribe your meetings.</string>
+    <string name="audio_permission_denied">Microphone permission is required for recording. Please enable it in Settings.</string>
+    <string name="grant">Grant</string>
+    <string name="settings">Settings</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_name">ARIA Recording</string>
+    <string name="notification_channel_description">Shows when ARIA is recording or processing</string>
+    <string name="notification_channel_recording">Recording</string>
+    <string name="notification_channel_recording_desc">Shows while a recording is in progress</string>
+    <string name="notification_channel_processing">Processing</string>
+    <string name="notification_channel_processing_desc">Shows while transcription or summarization is in progress</string>
+    <string name="notification_channel_alerts">Alerts</string>
+    <string name="notification_channel_alerts_desc">Important alerts and notifications</string>
+    <string name="notification_recording_title">ARIA Recording</string>
+    <string name="notification_recording_text">Recording in progress…</string>
+    <string name="notification_summarizing_title">ARIA Processing</string>
+    <string name="notification_summarizing_text">Generating AAR summary…</string>
+    <string name="notification_processing_title">Processing recording</string>
+    <string name="notification_processing_text">Generating transcript and summary…</string>
+    <string name="notification_ready_text">Ready to record</string>
+    <string name="notification_action_stop">Stop</string>
+    <string name="notification_complete_title">Summary Ready</string>
+    <string name="notification_complete_text">Your meeting summary is ready. Tap to view.</string>
+
+    <!-- Errors -->
+    <string name="error_generic">Something went wrong. Please try again.</string>
+    <string name="error_model_load">Failed to load AI model. Please restart the app.</string>
+    <string name="error_model_not_loaded">AI engine not loaded. Please wait.</string>
+    <string name="error_recording_failed">Recording failed to start. Check microphone permissions.</string>
+    <string name="error_export_failed">Failed to export. Please try again.</string>
+    <string name="error_audio_permission">Microphone permission required.</string>
+    <string name="error_audio_init_failed">Failed to initialize audio capture.</string>
+    <string name="error_transcript_too_short">Session too short. Please record more content.</string>
+    <string name="error_llm_inference_failed">Summary generation failed.</string>
+    <string name="error_database_failed">Failed to save session.</string>
+
+    <!-- Device Status -->
+    <string name="status_connected">Connected</string>
+    <string name="status_connecting">Connecting…</string>
+    <string name="status_disconnected">Disconnected</string>
+    <string name="status_recording">Recording…</string>
+    <string name="status_paused">Paused</string>
+    <string name="status_processing">Processing</string>
+    <string name="status_finalizing_transcript">Finalizing transcript…</string>
+    <string name="status_initializing">Initializing…</string>
+    <string name="status_initializing_llm">Preparing AI…</string>
+    <string name="status_generating_summary">Generating summary…</string>
+    <string name="status_saving_session">Saving session…</string>
+    <string name="btn_resume">Resume</string>
+    <string name="stop">Stop</string>
+    <string name="discard">Discard</string>
+    <string name="keep_recording">Keep Recording</string>
+    <string name="dialog_stop_title">Stop Recording?</string>
+    <string name="dialog_stop_message">Do you want to stop the recording and process the transcript?</string>
+    <string name="dialog_discard_title">Discard Recording?</string>
+    <string name="dialog_discard_message">This will delete the current recording. This action cannot be undone.</string>
+
+    <!-- Dialogs -->
+    <string name="dialog_cancel_session_title">Cancel Session?</string>
+    <string name="dialog_cancel_session_message">This will discard the current recording.</string>
+    <string name="dialog_cancel_processing_title">Cancel Processing?</string>
+    <string name="dialog_cancel_processing_message">The AI is still generating the summary. Cancel and discard this session?</string>
+    <string name="keep_processing">Keep Processing</string>
+    <string name="dialog_button_cancel">Cancel</string>
+    <string name="dialog_button_discard">Discard</string>
+    <string name="dialog_button_ok">OK</string>
+    <string name="dialog_button_retry">Retry</string>
+
+    <!-- Accessibility -->
+    <string name="content_desc_recording_indicator">Recording indicator</string>
+    <string name="content_desc_app_logo">ARIA logo</string>
+    <string name="content_desc_progress_bar">Download progress</string>
+
+    <!-- Session/Summary Screen (Legacy) -->
+    <string name="session_ready">Ready to record</string>
+    <string name="session_start_button">Start Recording</string>
+    <string name="session_initializing">Initializing AI Engine…</string>
+    <string name="session_loading_models">Loading models…</string>
+    <string name="session_recording">Recording</string>
+    <string name="session_recording_indicator">REC</string>
+    <string name="session_stop_button">Stop &amp; Summarize</string>
+    <string name="session_transcript_label">Live Transcript</string>
+    <string name="session_transcript_empty">Listening…</string>
+    <string name="session_transcript_placeholder">Speech will appear here as you speak.</string>
+    <string name="summarizing_title">Generating AAR Summary</string>
+    <string name="summarizing_processing">Processing transcript…</string>
+    <string name="summarizing_model_info">ARIA AAR 1B · GPU</string>
+    <string name="summarizing_speed_format">%d tok/s</string>
+    <string name="summarizing_progress_format">%d%%</string>
+    <string name="summary_title">AAR Summary</string>
+    <string name="summary_section_1">What Was Planned</string>
+    <string name="summary_section_2">What Happened</string>
+    <string name="summary_section_3">Why It Happened</string>
+    <string name="summary_section_4">How To Improve</string>
+    <string name="summary_not_captured">Not captured in session.</string>
+    <string name="summary_parse_warning">Summary format unavailable. Raw output shown below.</string>
+    <string name="summary_new_session">New Session</string>
+    <string name="summary_export">Export</string>
+    <string name="summary_share">Share</string>
+
+    <!-- History Screen (Legacy) -->
+    <string name="history_title">Session History</string>
+    <string name="history_empty">No sessions recorded yet.</string>
+    <string name="history_item_duration">Duration: %s</string>
+    <string name="history_item_date_format">MMM d, yyyy · HH:mm</string>
+    <string name="button_history">History</string>
+    <string name="button_record">@string/session_start_button</string>
+    <string name="status_summarizing">@string/summarizing_processing</string>
+    <string name="aar_what_planned">@string/summary_section_1</string>
+    <string name="aar_what_happened">@string/summary_section_2</string>
+    <string name="aar_why_happened">@string/summary_section_3</string>
+    <string name="aar_how_improve">@string/summary_section_4</string>
+    <string name="button_share">@string/summary_share</string>
+    <string name="button_new_session">@string/summary_new_session</string>
+    <string name="metrics_format">TTFT: %1$dms | Speed: %2$.1f tok/s</string>
+    <string name="share_subject">ARIA AAR Summary</string>
+    <string name="share_title">Share AAR Summary</string>
+
+    <!-- Time Formats -->
+    <string name="time_format_mmss">%1$d:%2$02d</string>
+    <string name="time_format_hhmmss">%1$d:%2$02d:%3$02d</string>
+    <string name="duration_hours">%1$d hr %2$d min</string>
+    <string name="duration_minutes">%1$d min</string>
+
+</resources>

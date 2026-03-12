@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  data_extraction_rules.xml
+
+  Android 12+ data extraction rules. Disables cloud backup for this demo app.
+  Model files are too large for cloud backup and can be re-downloaded.
+
+  @author STELLiQ Engineering
+  @version 0.1.0
+  @since ARIA Demo Build — 2026-03-02
+-->
+<data-extraction-rules>
+    <cloud-backup>
+        <!-- Exclude model files from cloud backup (too large, re-downloadable) -->
+        <exclude domain="file" path="models/" />
+        <exclude domain="external" path="models/" />
+        <!-- Exclude database (can be rebuilt, may contain sensitive content) -->
+        <exclude domain="database" path="aria_demo.db" />
+    </cloud-backup>
+    <device-transfer>
+        <!-- Allow database transfer during device migration -->
+        <include domain="database" path="aria_demo.db" />
+        <!-- Include shared preferences -->
+        <include domain="sharedpref" path="." />
+    </device-transfer>
+</data-extraction-rules>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Transcript panel — borderless, relies on surface color hierarchy -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@color/surface_container_lowest" />
+    <corners android:radius="16dp" />
+</shape>

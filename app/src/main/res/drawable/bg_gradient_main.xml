@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Subtle vertical gradient — deep purple with warm undertone -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <gradient
+        android:type="linear"
+        android:startColor="#0C0812"
+        android:centerColor="#0E0A16"
+        android:endColor="#120C1A"
+        android:angle="270" />
+</shape>

@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  fragment_home.xml
+
+  Purpose: Home screen — Premium dashboard with hero action
+           and recent sessions feed.
+
+  Product: ARIA - AI-Powered Recording & Intelligent Analysis
+  Author:  STELLiQ Engineering
+  Version: 5.0.0
+-->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_gradient_main"
+    tools:context=".ui.home.HomeFragment">
+
+    <!-- ARIA Logo — Top Left -->
+    <ImageView
+        android:id="@+id/image_logo"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="24dp"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/aria_logo"
+        app:tint="@color/primary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Status Badge — Top Right -->
+    <TextView
+        android:id="@+id/text_status_badge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/bg_status_badge"
+        android:drawablePadding="6dp"
+        android:fontFamily="sans-serif-medium"
+        android:letterSpacing="0.04"
+        android:paddingHorizontal="14dp"
+        android:paddingVertical="6dp"
+        android:text="@string/status_ready"
+        android:textColor="@color/text_secondary"
+        android:textSize="11sp"
+        app:drawableStartCompat="@drawable/ic_check_circle"
+        app:drawableTint="@color/text_data"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Header Section -->
+    <TextView
+        android:id="@+id/text_welcome"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="24dp"
+        android:background="@null"
+        android:fontFamily="sans-serif-medium"
+        android:letterSpacing="-0.02"
+        android:text="@string/welcome_title"
+        android:textColor="@color/text_primary"
+        android:textSize="28sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/image_logo" />
+
+    <TextView
+        android:id="@+id/text_subtitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="24dp"
+        android:background="@null"
+        android:text="@string/welcome_subtitle"
+        android:textColor="@color/text_tertiary"
+        android:textSize="15sp"
+        android:fontFamily="sans-serif"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_welcome" />
+
+    <!-- Start Recording Button — Primary CTA -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_start_recording"
+        android:layout_width="0dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="24dp"
+        android:text="@string/btn_start_recording"
+        android:textSize="15sp"
+        android:fontFamily="sans-serif-medium"
+        android:letterSpacing="0.01"
+        app:backgroundTint="@color/primary"
+        android:textColor="@color/on_primary"
+        app:cornerRadius="12dp"
+        app:icon="@drawable/ic_mic"
+        app:iconGravity="textStart"
+        app:iconPadding="12dp"
+        app:iconTint="@color/on_primary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_subtitle" />
+
+    <!-- Recent Sessions Section Header -->
+    <View
+        android:id="@+id/section_accent_bar"
+        android:layout_width="3dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="36dp"
+        android:background="@color/primary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_start_recording" />
+
+    <TextView
+        android:id="@+id/text_recent_sessions"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:background="@null"
+        android:fontFamily="sans-serif-medium"
+        android:letterSpacing="0.04"
+        android:text="@string/recent_sessions"
+        android:textAllCaps="true"
+        android:textColor="@color/text_secondary"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toBottomOf="@id/section_accent_bar"
+        app:layout_constraintEnd_toStartOf="@id/btn_view_all_sessions"
+        app:layout_constraintStart_toEndOf="@id/section_accent_bar"
+        app:layout_constraintTop_toTopOf="@id/section_accent_bar" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_view_all_sessions"
+        style="@style/Widget.Material3.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="@string/view_all"
+        android:textColor="@color/primary"
+        android:textSize="13sp"
+        android:letterSpacing="0.02"
+        app:layout_constraintBottom_toBottomOf="@id/text_recent_sessions"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/section_accent_bar" />
+
+    <!-- Progress Indicator -->
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:indicatorColor="@color/primary"
+        app:trackColor="@color/surface_container_high"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_recent_sessions"
+        tools:visibility="visible" />
+
+    <!-- Recent Sessions RecyclerView -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_recent_sessions"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:clipToPadding="false"
+        android:paddingBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/section_accent_bar"
+        tools:listitem="@layout/item_recent_session" />
+
+    <!-- Empty State -->
+    <LinearLayout
+        android:id="@+id/empty_state"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/bg_card_tactical"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="48dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/section_accent_bar"
+        tools:visibility="visible">
+
+        <ImageView
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:alpha="0.35"
+            android:src="@drawable/ic_empty_sessions"
+            app:tint="@color/text_tertiary"
+            android:contentDescription="@string/empty_sessions_icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@null"
+            android:text="@string/empty_sessions_title"
+            android:textColor="@color/text_secondary"
+            android:textSize="16sp"
+            android:fontFamily="sans-serif-medium" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@null"
+            android:gravity="center"
+            android:text="@string/empty_sessions_subtitle"
+            android:textColor="@color/text_tertiary"
+            android:textSize="14sp"
+            android:fontFamily="sans-serif"
+            android:lineSpacingMultiplier="1.4" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

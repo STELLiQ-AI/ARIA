@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    activity_splash.xml
+
+    Purpose: Premium splash screen for ARIA — cinematic brand reveal
+             with STELLiQ identity and elegant system initialization.
+
+    Product: ARIA - AI-Powered Recording & Intelligent Analysis
+    Company: STELLiQ Technologies, LLC
+    Version: 5.0.0
+-->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_splash_gradient"
+    android:fitsSystemWindows="true">
+
+    <!-- Top spacer -->
+    <Space
+        android:id="@+id/topSpacer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/logoContainer"
+        app:layout_constraintVertical_weight="1.2" />
+
+    <!-- Logo Container — Large STELLiQ logo -->
+    <FrameLayout
+        android:id="@+id/logoContainer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/topSpacer"
+        app:layout_constraintBottom_toTopOf="@id/productSection"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintWidth_percent="0.80"
+        app:layout_constraintVertical_weight="2.5">
+
+        <ImageView
+            android:id="@+id/stelliqLogo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/stelliq_logo"
+            android:contentDescription="@string/stelliq_logo_desc" />
+
+    </FrameLayout>
+
+    <!-- Company Name — Below Logo -->
+    <TextView
+        android:id="@+id/companyName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/company_name"
+        android:textColor="@color/text_tertiary"
+        android:textSize="14sp"
+        android:fontFamily="sans-serif-light"
+        android:letterSpacing="0.12"
+        android:visibility="gone"
+        android:background="@null"
+        app:layout_constraintTop_toBottomOf="@id/logoContainer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Product Section — ARIA Identity -->
+    <LinearLayout
+        android:id="@+id/productSection"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingHorizontal="40dp"
+        app:layout_constraintTop_toBottomOf="@id/logoContainer"
+        app:layout_constraintBottom_toTopOf="@id/loadingSection"
+        app:layout_constraintVertical_weight="2">
+
+        <!-- Presents label -->
+        <TextView
+            android:id="@+id/presentsText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/splash_presents"
+            android:textColor="@color/text_tertiary"
+            android:textSize="10sp"
+            android:fontFamily="sans-serif-medium"
+            android:letterSpacing="0.25"
+            android:textAllCaps="true"
+            android:layout_marginBottom="10dp"
+            android:background="@null" />
+
+        <!-- A.R.I.A. Product Name -->
+        <TextView
+            android:id="@+id/productName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/product_name_acronym"
+            android:textColor="@color/primary"
+            android:textSize="52sp"
+            android:fontFamily="sans-serif-medium"
+            android:letterSpacing="0.12"
+            android:background="@null" />
+
+        <!-- Acronym Expansion -->
+        <TextView
+            android:id="@+id/productTagline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/splash_acronym_expansion"
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp"
+            android:fontFamily="sans-serif"
+            android:textAlignment="center"
+            android:letterSpacing="0.04"
+            android:textAllCaps="true"
+            android:background="@null" />
+
+        <!-- Product Description -->
+        <TextView
+            android:id="@+id/productDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/splash_description"
+            android:textColor="@color/text_tertiary"
+            android:textSize="12sp"
+            android:fontFamily="sans-serif-light"
+            android:textAlignment="center"
+            android:lineSpacingMultiplier="1.5"
+            android:maxWidth="300dp"
+            android:background="@null" />
+
+    </LinearLayout>
+
+    <!-- Loading Section -->
+    <LinearLayout
+        android:id="@+id/loadingSection"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingHorizontal="56dp"
+        app:layout_constraintTop_toBottomOf="@id/productSection"
+        app:layout_constraintBottom_toTopOf="@id/footerSection"
+        app:layout_constraintVertical_weight="1.2">
+
+        <!-- Loading Status Text -->
+        <TextView
+            android:id="@+id/loadingStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/splash_loading_init"
+            android:textColor="@color/text_accent"
+            android:textSize="11sp"
+            android:fontFamily="monospace"
+            android:letterSpacing="0.06"
+            android:textAllCaps="true"
+            android:layout_marginBottom="16dp"
+            android:background="@null" />
+
+        <!-- Progress Bar -->
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/loadingProgress"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:indeterminate="false"
+            android:progress="0"
+            android:max="100"
+            app:indicatorColor="@color/primary"
+            app:trackColor="@color/surface_container_high"
+            app:trackCornerRadius="2dp"
+            app:trackThickness="3dp" />
+
+    </LinearLayout>
+
+    <!-- Footer Section — Version + Copyright -->
+    <LinearLayout
+        android:id="@+id/footerSection"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingBottom="28dp"
+        app:layout_constraintTop_toBottomOf="@id/loadingSection"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_weight="0.6">
+
+        <!-- Version Info -->
+        <TextView
+            android:id="@+id/versionText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/splash_version"
+            android:textColor="@color/text_tertiary"
+            android:textSize="10sp"
+            android:fontFamily="monospace"
+            android:letterSpacing="0.08"
+            android:alpha="0.5"
+            android:background="@null" />
+
+        <!-- Copyright -->
+        <TextView
+            android:id="@+id/copyrightText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/splash_copyright"
+            android:textColor="@color/text_tertiary"
+            android:textSize="9sp"
+            android:fontFamily="sans-serif-light"
+            android:letterSpacing="0.04"
+            android:alpha="0.35"
+            android:background="@null" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

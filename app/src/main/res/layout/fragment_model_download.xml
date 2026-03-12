@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  fragment_model_download.xml
+
+  Purpose: LLM model download screen with progress and actions.
+
+  Product: ARIA - AI-Powered Recording & Intelligent Analysis
+  Author:  STELLiQ Engineering
+  Version: 5.0.0
+-->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_gradient_main"
+    android:padding="24dp">
+
+    <!-- Header with accent bar -->
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <View
+            android:layout_width="3dp"
+            android:layout_height="22dp"
+            android:background="@color/primary" />
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:background="@null"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/download_title"
+            android:textColor="@color/text_primary"
+            android:textSize="24sp"
+            android:letterSpacing="-0.01" />
+    </LinearLayout>
+
+    <!-- Model info card -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_model"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        app:cardBackgroundColor="@color/surface_container"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header"
+        app:strokeColor="@color/card_border"
+        app:strokeWidth="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/download_model_name"
+                android:textColor="@color/text_primary"
+                android:textSize="17sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:background="@null"
+                android:text="@string/download_description"
+                android:textColor="@color/text_tertiary"
+                android:textSize="14sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginVertical="14dp"
+                android:background="@color/divider" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:lineSpacingMultiplier="1.5"
+                android:text="@string/download_model_info"
+                android:textColor="@color/text_secondary"
+                android:textSize="14sp" />
+
+            <!-- Progress section -->
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/progress_download"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:max="100"
+                android:progress="0"
+                app:indicatorColor="@color/primary"
+                app:trackColor="@color/surface_container_high"
+                app:trackCornerRadius="2dp"
+                app:trackThickness="3dp" />
+
+            <TextView
+                android:id="@+id/text_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@null"
+                android:fontFamily="monospace"
+                android:text="@string/download_status_not_started"
+                android:textColor="@color/text_tertiary"
+                android:textSize="12sp"
+                tools:text="Downloading... 45%" />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Download Button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_download"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/button_download"
+        android:textColor="@color/on_primary"
+        android:textSize="16sp"
+        app:backgroundTint="@color/primary"
+        app:cornerRadius="14dp"
+        app:icon="@drawable/ic_download"
+        app:iconGravity="textStart"
+        app:iconPadding="12dp"
+        app:iconTint="@color/on_primary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/card_model" />
+
+    <!-- Retry Button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_retry"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="12dp"
+        android:text="@string/button_retry"
+        android:textColor="@color/recording_red"
+        android:textSize="16sp"
+        android:visibility="gone"
+        app:cornerRadius="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button_download"
+        app:strokeColor="@color/recording_red"
+        app:strokeWidth="0dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

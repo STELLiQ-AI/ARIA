@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    item_transcript_segment.xml
+
+    Purpose: Transcript segment item — timestamp, speaker, and text.
+
+    Module:  com.stelliq.aria.ui.session
+    Product: ARIA - AI-Powered Recording & Intelligent Analysis
+    Version: 5.0.0
+-->
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardSegment"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="4dp"
+    app:cardBackgroundColor="@color/surface_container_low"
+    app:cardCornerRadius="14dp"
+    app:cardElevation="0dp"
+    app:strokeColor="@color/card_border"
+    app:strokeWidth="0dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="14dp">
+
+        <!-- Header: Timestamp and Speaker -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <!-- Timestamp Badge -->
+            <TextView
+                android:id="@+id/textTimestamp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_timestamp_badge"
+                android:fontFamily="monospace"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="4dp"
+                android:textColor="@color/on_primary_container"
+                android:textSize="11sp"
+                tools:text="02:34" />
+
+            <!-- Speaker Label -->
+            <TextView
+                android:id="@+id/textSpeaker"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/primary"
+                android:textSize="14sp"
+                android:fontFamily="sans-serif-medium"
+                android:background="@null"
+                tools:text="Speaker 1" />
+
+            <!-- Confidence Indicator -->
+            <ImageView
+                android:id="@+id/iconConfidence"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:src="@drawable/ic_check_circle"
+                android:visibility="gone"
+                app:tint="@color/status_success"
+                android:contentDescription="High confidence"
+                tools:visibility="visible" />
+
+        </LinearLayout>
+
+        <!-- Transcript Text -->
+        <TextView
+            android:id="@+id/textContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:lineSpacingMultiplier="1.5"
+            android:textColor="@color/text_secondary"
+            android:textSize="14sp"
+            android:textIsSelectable="true"
+            android:background="@null"
+            tools:text="This is the transcribed text from the audio segment. It can span multiple lines and contains the spoken words captured during the recording session." />
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

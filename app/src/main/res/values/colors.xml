@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  colors.xml
+
+  Purpose: Color resources for ARIA commercial app.
+           Rich deep purple foundation with luminous gold/amber accents.
+           Premium, modern aesthetic with layered depth.
+
+  Product: ARIA - AI-Powered Recording & Intelligent Analysis
+  Author:  STELLiQ Engineering
+  Version: 5.0.0
+-->
+<resources>
+
+    <!-- =================================================================== -->
+    <!-- Primary Brand Colors — Luminous Gold                                -->
+    <!-- =================================================================== -->
+
+    <color name="primary">#F0A030</color>
+    <color name="on_primary">#1C1008</color>
+    <color name="primary_container">#3D2A10</color>
+    <color name="on_primary_container">#FFDFA0</color>
+
+    <!-- Glow variants for emphasis -->
+    <color name="primary_glow">#30F0A030</color>
+    <color name="primary_glow_strong">#60F0A030</color>
+    <color name="primary_glow_subtle">#14F0A030</color>
+
+    <!-- =================================================================== -->
+    <!-- Secondary Colors — Soft Amber                                       -->
+    <!-- =================================================================== -->
+
+    <color name="secondary">#E8B84A</color>
+    <color name="on_secondary">#1C1408</color>
+    <color name="secondary_container">#4A3518</color>
+    <color name="on_secondary_container">#FFE4A8</color>
+
+    <!-- =================================================================== -->
+    <!-- Tertiary Colors — Warm Peach                                        -->
+    <!-- =================================================================== -->
+
+    <color name="tertiary">#E8926A</color>
+    <color name="on_tertiary">#1C1008</color>
+    <color name="tertiary_container">#4A2A1C</color>
+    <color name="on_tertiary_container">#FFD0B8</color>
+
+    <!-- =================================================================== -->
+    <!-- Surface Colors — Layered Deep Purple                                -->
+    <!-- =================================================================== -->
+
+    <color name="surface">#110D18</color>
+    <color name="surface_dim">#0C0812</color>
+    <color name="surface_bright">#1C1628</color>
+    <color name="on_surface">#E8E0F0</color>
+    <color name="surface_variant">#181224</color>
+    <color name="on_surface_variant">#C0B8D0</color>
+
+    <!-- Surface tint levels — wider steps for clear hierarchy without borders -->
+    <color name="surface_container_lowest">#0A0714</color>
+    <color name="surface_container_low">#0F0B18</color>
+    <color name="surface_container">#161020</color>
+    <color name="surface_container_high">#1C1628</color>
+    <color name="surface_container_highest">#241C34</color>
+
+    <!-- =================================================================== -->
+    <!-- Background — Near-Black with Purple Undertone                       -->
+    <!-- =================================================================== -->
+
+    <color name="background">#0C0812</color>
+    <color name="on_background">#E8E0F0</color>
+
+    <!-- =================================================================== -->
+    <!-- Error Colors                                                        -->
+    <!-- =================================================================== -->
+
+    <color name="error">#F06060</color>
+    <color name="on_error">#400808</color>
+    <color name="error_container">#601818</color>
+    <color name="on_error_container">#FFD0D0</color>
+
+    <!-- =================================================================== -->
+    <!-- Outline — Refined Purple-Tinted Lines                               -->
+    <!-- =================================================================== -->
+
+    <color name="outline">#302848</color>
+    <color name="outline_variant">#0CFFFFFF</color>
+
+    <!-- Card border — barely visible, felt not seen (X/Twitter approach) -->
+    <color name="card_border">#0FFFFFFF</color>
+    <color name="card_border_active">#18F0A030</color>
+    <color name="card_border_hover">#28F0A030</color>
+
+    <!-- =================================================================== -->
+    <!-- Recording Indicator                                                 -->
+    <!-- =================================================================== -->
+
+    <color name="recording_red">#F04040</color>
+    <color name="recording_red_dark">#C02020</color>
+    <color name="recording_pulse">#F04040</color>
+    <color name="recording_glow">#30F04040</color>
+
+    <!-- =================================================================== -->
+    <!-- Status Colors                                                       -->
+    <!-- =================================================================== -->
+
+    <color name="status_success">#58E8A0</color>
+    <color name="status_warning">#F0C850</color>
+    <color name="status_error">#F04040</color>
+    <color name="status_processing">#50B8F0</color>
+    <color name="status_completed">#58E8A0</color>
+
+    <!-- =================================================================== -->
+    <!-- Text Colors — Refined Hierarchy                                     -->
+    <!-- =================================================================== -->
+
+    <color name="text_primary">#F4F0FA</color>
+    <color name="text_secondary">#B0A8C8</color>
+    <color name="text_tertiary">#706888</color>
+    <color name="text_disabled">#403860</color>
+
+    <!-- Special text -->
+    <color name="text_accent">#F0A030</color>
+    <color name="text_data">#E8B84A</color>
+
+    <!-- =================================================================== -->
+    <!-- Dividers and Borders                                                -->
+    <!-- =================================================================== -->
+
+    <color name="divider">#0AFFFFFF</color>
+    <color name="border">#0CFFFFFF</color>
+
+    <!-- =================================================================== -->
+    <!-- Audio Visualization                                                 -->
+    <!-- =================================================================== -->
+
+    <color name="waveform_active">#F0A030</color>
+    <color name="waveform_inactive">#201830</color>
+    <color name="waveform_peak">#E8B84A</color>
+
+    <!-- =================================================================== -->
+    <!-- Inverse Colors (for snackbars, tooltips)                            -->
+    <!-- =================================================================== -->
+
+    <color name="inverse_surface">#E8E0F0</color>
+    <color name="inverse_on_surface">#302840</color>
+    <color name="inverse_primary">#8A5800</color>
+
+    <!-- =================================================================== -->
+    <!-- Scrim and Shadow                                                    -->
+    <!-- =================================================================== -->
+
+    <color name="scrim">#000000</color>
+    <color name="shadow">#000000</color>
+
+    <!-- =================================================================== -->
+    <!-- Bottom Navigation                                                   -->
+    <!-- =================================================================== -->
+
+    <color name="nav_bar_bg">#0A0610</color>
+    <color name="nav_indicator">#18F0A030</color>
+
+    <!-- =================================================================== -->
+    <!-- Splash Screen                                                       -->
+    <!-- =================================================================== -->
+
+    <color name="splash_gradient_start">#0C0812</color>
+    <color name="splash_gradient_center">#10081A</color>
+    <color name="splash_gradient_end">#140C20</color>
+
+    <!-- =================================================================== -->
+    <!-- Premium Surface Tints                                               -->
+    <!-- =================================================================== -->
+
+    <color name="surface_gold_tint">#08F0A030</color>
+    <color name="surface_purple_tint">#18201040</color>
+    <color name="glass_overlay">#10161020</color>
+
+    <!-- =================================================================== -->
+    <!-- Legacy Aliases (for layout compatibility)                           -->
+    <!-- =================================================================== -->
+
+    <color name="accent">#F0A030</color>
+    <color name="ripple">#28F0A030</color>
+    <color name="text_on_accent">#1C1008</color>
+
+</resources>

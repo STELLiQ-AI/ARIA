@@ -1,0 +1,11 @@
+# Version script for libasr_jni.so
+# WHY: Hide all ggml/whisper symbols from the global namespace.
+# Only export JNI entry points. This prevents whisper's CPU-only ggml
+# symbols from shadowing llama.cpp's GPU-capable ggml prebuilt libraries.
+{
+    global:
+        JNI_OnLoad;
+        Java_*;
+    local:
+        *;
+};

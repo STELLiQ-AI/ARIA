@@ -1,0 +1,72 @@
+# libs.versions.toml
+#
+# ARIA Demo APK dependency version catalog.
+# Centralizes all dependency versions for consistent updates.
+#
+# @author STELLiQ Engineering
+# @version 0.1.0
+# @since ARIA Demo Build — 2026-03-02
+
+[versions]
+# Android Gradle Plugin
+agp = "8.2.2"
+
+# AndroidX
+appcompat = "1.6.1"
+material = "1.11.0"
+constraintlayout = "2.1.4"
+coreKtx = "1.12.0"
+
+# Lifecycle
+lifecycle = "2.7.0"
+
+# Navigation
+navigation = "2.7.7"
+
+# Room Database
+room = "2.6.1"
+
+# ONNX Runtime for VAD
+onnxruntime = "1.17.0"
+
+# SplashScreen API
+splashscreen = "1.0.1"
+
+# Testing
+junit = "4.13.2"
+extJunit = "1.1.5"
+espresso = "3.5.1"
+
+[libraries]
+# AndroidX Core
+appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+
+# Lifecycle
+lifecycle-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel", version.ref = "lifecycle" }
+lifecycle-livedata = { group = "androidx.lifecycle", name = "lifecycle-livedata", version.ref = "lifecycle" }
+lifecycle-runtime = { group = "androidx.lifecycle", name = "lifecycle-runtime", version.ref = "lifecycle" }
+
+# Navigation
+navigation-fragment = { group = "androidx.navigation", name = "navigation-fragment", version.ref = "navigation" }
+navigation-ui = { group = "androidx.navigation", name = "navigation-ui", version.ref = "navigation" }
+
+# Room Database
+room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
+
+# ONNX Runtime
+onnxruntime-android = { group = "com.microsoft.onnxruntime", name = "onnxruntime-android", version.ref = "onnxruntime" }
+
+# SplashScreen
+splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "splashscreen" }
+
+# Testing
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "extJunit" }
+espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }

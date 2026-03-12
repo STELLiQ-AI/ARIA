@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    fragment_tab_summary.xml
+
+    Purpose: Summary tab — AI-generated brief with template selection.
+
+    Module:  com.stelliq.aria.ui.session
+    Product: ARIA - AI-Powered Recording & Intelligent Analysis
+    Version: 5.0.0
+-->
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- Summary Content Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardSummary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/surface_container"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp"
+            app:strokeColor="@color/card_border"
+            app:strokeWidth="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- Summary Header -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="3dp"
+                        android:layout_height="16dp"
+                        android:background="@color/primary" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_weight="1"
+                        android:text="@string/tab_summary"
+                        android:textColor="@color/text_primary"
+                        android:textSize="15sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:letterSpacing="0.04"
+                        android:textAllCaps="true"
+                        android:background="@null" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        android:textSize="11sp"
+                        app:chipBackgroundColor="@color/primary_container"
+                        android:textColor="@color/on_primary_container"
+                        app:chipMinHeight="28dp"
+                        app:chipCornerRadius="6dp"
+                        tools:text="Generating..."
+                        tools:visibility="visible" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginVertical="14dp"
+                    android:background="@color/divider" />
+
+                <!-- Summary Text -->
+                <TextView
+                    android:id="@+id/textSummary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingMultiplier="1.6"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="14sp"
+                    android:background="@null"
+                    tools:text="This is a sample meeting summary that would contain key discussion points, decisions made, and action items from the recorded session." />
+
+                <!-- Empty State -->
+                <LinearLayout
+                    android:id="@+id/layoutEmptySummary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="36dp"
+                    android:visibility="gone"
+                    tools:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:alpha="0.25"
+                        android:src="@drawable/ic_summary"
+                        app:tint="@color/text_tertiary"
+                        android:contentDescription="@null" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:gravity="center"
+                        android:text="@string/no_summary"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="16sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:background="@null" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center"
+                        android:text="Tap the button below to generate a summary"
+                        android:textColor="@color/text_tertiary"
+                        android:textSize="14sp"
+                        android:lineSpacingMultiplier="1.4"
+                        android:background="@null" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Generation Progress -->
+        <LinearLayout
+            android:id="@+id/layoutGenerating"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="28dp"
+            android:visibility="gone"
+            tools:visibility="gone">
+
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/progressGenerating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminate="false"
+                app:indicatorColor="@color/primary"
+                app:trackColor="@color/surface_container_high"
+                app:indicatorSize="44dp"
+                app:trackThickness="3dp" />
+
+            <TextView
+                android:id="@+id/textGeneratingStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Generating summary..."
+                android:textColor="@color/text_secondary"
+                android:textSize="14sp"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.02"
+                android:textAllCaps="true"
+                android:background="@null" />
+
+            <TextView
+                android:id="@+id/textGeneratingOutput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="monospace"
+                android:maxLines="5"
+                android:textColor="@color/text_data"
+                android:textSize="13sp"
+                android:background="@null"
+                tools:text="Analyzing transcript..." />
+
+        </LinearLayout>
+
+        <!-- Regenerate Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnRegenerate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/regenerate_summary"
+            android:textColor="@color/primary"
+            android:textSize="15sp"
+            app:icon="@drawable/ic_refresh"
+            app:iconTint="@color/primary"
+            app:strokeColor="@color/outline"
+            app:strokeWidth="0dp"
+            app:cornerRadius="12dp"
+            style="@style/Widget.Material3.Button.OutlinedButton" />
+
+        <!-- Template Selection -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:cardBackgroundColor="@color/surface_container"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp"
+            app:strokeColor="@color/card_border"
+            app:strokeWidth="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Summary Template"
+                    android:textColor="@color/text_tertiary"
+                    android:textSize="12sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:letterSpacing="0.06"
+                    android:textAllCaps="true"
+                    android:background="@null" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chipGroupTemplate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    app:singleSelection="true"
+                    app:selectionRequired="true">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipMilitary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/settings_template_military"
+                        android:textSize="13sp"
+                        app:chipBackgroundColor="@color/surface_container_high"
+                        app:chipStrokeColor="@color/outline_variant"
+                        app:chipStrokeWidth="1dp"
+                        app:chipCornerRadius="8dp"
+                        style="@style/Widget.Material3.Chip.Filter" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipRetrospective"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:text="@string/settings_template_retrospective"
+                        android:textSize="13sp"
+                        app:chipBackgroundColor="@color/surface_container_high"
+                        app:chipStrokeColor="@color/outline_variant"
+                        app:chipStrokeWidth="1dp"
+                        app:chipCornerRadius="8dp"
+                        style="@style/Widget.Material3.Chip.Filter" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipIncident"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/settings_template_incident"
+                        android:textSize="13sp"
+                        app:chipBackgroundColor="@color/surface_container_high"
+                        app:chipStrokeColor="@color/outline_variant"
+                        app:chipStrokeWidth="1dp"
+                        app:chipCornerRadius="8dp"
+                        style="@style/Widget.Material3.Chip.Filter" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipSimple"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/settings_template_simple"
+                        android:textSize="13sp"
+                        app:chipBackgroundColor="@color/surface_container_high"
+                        app:chipStrokeColor="@color/outline_variant"
+                        app:chipStrokeWidth="1dp"
+                        app:chipCornerRadius="8dp"
+                        style="@style/Widget.Material3.Chip.Filter" />
+
+                </com.google.android.material.chip.ChipGroup>
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

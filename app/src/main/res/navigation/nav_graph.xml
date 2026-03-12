@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  nav_graph.xml
+
+  Purpose: Navigation graph defining app navigation flow.
+           Uses Safe Args for type-safe argument passing.
+
+  Product: ARIA - AI-Powered Recording & Intelligent Analysis
+  Author:  STELLiQ Engineering
+  Version: 1.0.0
+-->
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <!-- Home Screen -->
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.stelliq.aria.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home">
+
+        <!-- Navigate to Recording with optional template -->
+        <action
+            android:id="@+id/action_home_to_recording"
+            app:destination="@id/recordingFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+        <!-- Navigate to Sessions List -->
+        <action
+            android:id="@+id/action_home_to_sessions"
+            app:destination="@id/sessionsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+        <!-- Navigate to Session Detail (from recent sessions) -->
+        <action
+            android:id="@+id/action_home_to_session_detail"
+            app:destination="@id/sessionDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+        <!-- Navigate to Settings -->
+        <action
+            android:id="@+id/action_home_to_settings"
+            app:destination="@id/settingsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+    </fragment>
+
+    <!-- Recording Screen -->
+    <fragment
+        android:id="@+id/recordingFragment"
+        android:name="com.stelliq.aria.ui.recording.RecordingFragment"
+        android:label="@string/title_recording"
+        tools:layout="@layout/fragment_recording">
+
+        <!-- Template to use for summary generation -->
+        <argument
+            android:name="template"
+            app:argType="string"
+            android:defaultValue="retrospective" />
+
+        <!-- Optional title for the session -->
+        <argument
+            android:name="title"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
+
+        <!-- Navigate to Session Detail after recording completes -->
+        <action
+            android:id="@+id/action_recording_to_session"
+            app:destination="@id/sessionDetailFragment"
+            app:popUpTo="@id/homeFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+    </fragment>
+
+    <!-- Sessions List Screen -->
+    <fragment
+        android:id="@+id/sessionsFragment"
+        android:name="com.stelliq.aria.ui.sessions.SessionsFragment"
+        android:label="@string/title_sessions"
+        tools:layout="@layout/fragment_sessions">
+
+        <!-- Navigate to Session Detail -->
+        <action
+            android:id="@+id/action_sessions_to_detail"
+            app:destination="@id/sessionDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+        <!-- Navigate back to Home (for edge cases and explicit back navigation) -->
+        <action
+            android:id="@+id/action_sessions_to_home"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right" />
+
+    </fragment>
+
+    <!-- Session Detail Screen -->
+    <fragment
+        android:id="@+id/sessionDetailFragment"
+        android:name="com.stelliq.aria.ui.session.SessionDetailFragment"
+        android:label="@string/title_session_detail"
+        tools:layout="@layout/fragment_session_detail">
+
+        <!-- Session ID to display -->
+        <argument
+            android:name="sessionId"
+            app:argType="string" />
+
+        <!-- Navigate to Settings -->
+        <action
+            android:id="@+id/action_detail_to_settings"
+            app:destination="@id/settingsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+        <!-- Navigate back to Home (explicit action for edge cases) -->
+        <action
+            android:id="@+id/action_detail_to_home"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right" />
+
+    </fragment>
+
+    <!-- Settings Screen -->
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.stelliq.aria.ui.settings.SettingsFragment"
+        android:label="@string/title_settings"
+        tools:layout="@layout/fragment_settings">
+
+        <!-- Navigate back home (can also use back navigation) -->
+        <action
+            android:id="@+id/action_settings_to_home"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true" />
+
+    </fragment>
+
+</navigation>

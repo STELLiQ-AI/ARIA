@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  dimens.xml
+
+  ARIA Demo APK dimension values for consistent spacing and sizing.
+
+  @author STELLiQ Engineering
+  @version 0.1.0
+  @since ARIA Demo Build — 2026-03-02
+-->
+<resources>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         SPACING
+         ═══════════════════════════════════════════════════════════════════════ -->
+
+    <dimen name="spacing_xs">4dp</dimen>
+    <dimen name="spacing_sm">8dp</dimen>
+    <dimen name="spacing_md">16dp</dimen>
+    <dimen name="spacing_lg">24dp</dimen>
+    <dimen name="spacing_xl">32dp</dimen>
+    <dimen name="spacing_xxl">48dp</dimen>
+
+    <!-- Legacy aliases for layout compatibility -->
+    <dimen name="spacing_small">@dimen/spacing_sm</dimen>
+    <dimen name="spacing_medium">@dimen/spacing_md</dimen>
+    <dimen name="spacing_large">@dimen/spacing_lg</dimen>
+    <dimen name="spacing_xlarge">@dimen/spacing_xl</dimen>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         CONTENT PADDING
+         ═══════════════════════════════════════════════════════════════════════ -->
+
+    <dimen name="content_padding_horizontal">16dp</dimen>
+    <dimen name="content_padding_vertical">16dp</dimen>
+    <dimen name="card_padding">16dp</dimen>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         TEXT SIZES
+         ═══════════════════════════════════════════════════════════════════════ -->
+
+    <dimen name="text_size_title">24sp</dimen>
+    <dimen name="text_size_headline">20sp</dimen>
+    <dimen name="text_size_body">16sp</dimen>
+    <dimen name="text_size_caption">14sp</dimen>
+    <dimen name="text_size_small">12sp</dimen>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         BUTTON DIMENSIONS
+         ═══════════════════════════════════════════════════════════════════════ -->
+
+    <dimen name="button_height">56dp</dimen>
+    <dimen name="button_min_width">120dp</dimen>
+    <dimen name="button_corner_radius">8dp</dimen>
+    <dimen name="fab_size">72dp</dimen>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         RECORDING BUTTON (Large circular button for start/stop)
+         ═══════════════════════════════════════════════════════════════════════ -->
+
+    <dimen name="record_button_size">96dp</dimen>
+    <dimen name="record_button_icon_size">48dp</dimen>
+    <dimen name="record_indicator_size">12dp</dimen>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         CARD DIMENSIONS
+         ═══════════════════════════════════════════════════════════════════════ -->
+
+    <dimen name="card_corner_radius">12dp</dimen>
+    <dimen name="card_elevation">4dp</dimen>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         TRANSCRIPT VIEW
+         ═══════════════════════════════════════════════════════════════════════ -->
+
+    <dimen name="transcript_min_height">200dp</dimen>
+    <dimen name="transcript_max_height">400dp</dimen>
+    <dimen name="transcript_text_size">15sp</dimen>
+    <dimen name="transcript_line_spacing">4dp</dimen>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         PROGRESS INDICATORS
+         ═══════════════════════════════════════════════════════════════════════ -->
+
+    <dimen name="progress_bar_height">8dp</dimen>
+    <dimen name="circular_progress_size">48dp</dimen>
+    <dimen name="circular_progress_stroke">4dp</dimen>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         TIMER DISPLAY
+         ═══════════════════════════════════════════════════════════════════════ -->
+
+    <dimen name="timer_text_size">36sp</dimen>
+    <dimen name="text_size_timer">@dimen/timer_text_size</dimen>
+    <dimen name="text_size_heading">@dimen/text_size_headline</dimen>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         AAR SUMMARY SECTIONS
+         ═══════════════════════════════════════════════════════════════════════ -->
+
+    <dimen name="section_header_size">18sp</dimen>
+    <dimen name="section_spacing">20dp</dimen>
+    <dimen name="section_divider_height">1dp</dimen>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         ICON SIZES
+         ═══════════════════════════════════════════════════════════════════════ -->
+
+    <dimen name="icon_size_sm">16dp</dimen>
+    <dimen name="icon_size_md">24dp</dimen>
+    <dimen name="icon_size_lg">32dp</dimen>
+    <dimen name="icon_size_xl">48dp</dimen>
+
+</resources>

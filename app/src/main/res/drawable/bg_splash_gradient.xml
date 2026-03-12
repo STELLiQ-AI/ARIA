@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Splash screen radial gradient — subtle purple vignette with gold center -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <gradient
+        android:type="radial"
+        android:centerX="0.5"
+        android:centerY="0.38"
+        android:gradientRadius="650"
+        android:startColor="#181028"
+        android:endColor="#08060E" />
+</shape>

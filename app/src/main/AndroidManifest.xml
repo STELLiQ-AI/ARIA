@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  AndroidManifest.xml
+
+  ARIA Demo APK manifest. Declares all permissions, components, and service types
+  required for offline audio recording and on-device ML inference.
+
+  CRITICAL: foregroundServiceType="microphone" is REQUIRED for Android 14.
+  Missing this causes silent service termination when app backgrounds.
+
+  @author STELLiQ Engineering
+  @version 0.1.0
+  @since ARIA Demo Build — 2026-03-02
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         PERMISSIONS
+         ═══════════════════════════════════════════════════════════════════════ -->
+
+    <!-- Audio recording permission — required for speech transcription -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <!-- Foreground service permission — required for Android 9+ (API 28+) -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
+    <!-- Foreground service microphone type — required for Android 14+ (API 34) -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MICROPHONE" />
+
+    <!-- Internet permission — required for DownloadManager LLM download only -->
+    <!-- No network calls occur during normal operation (air-gap compliant) -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- Network state for DownloadManager WiFi preference -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!-- Wake lock to prevent CPU sleep during long recordings -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <!-- Post notifications — required for Android 13+ (API 33) -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <!-- Vibrate permission for haptic feedback on state changes -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         HARDWARE FEATURES
+         ═══════════════════════════════════════════════════════════════════════ -->
+
+    <!-- Microphone hardware is required -->
+    <uses-feature
+        android:name="android.hardware.microphone"
+        android:required="true" />
+
+    <!-- OpenCL/Vulkan GPU is used but not strictly required (CPU fallback exists) -->
+    <uses-feature
+        android:name="android.hardware.opengles.aep"
+        android:required="false" />
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         APPLICATION
+         ═══════════════════════════════════════════════════════════════════════ -->
+
+    <application
+        android:name=".ARIAApplication"
+        android:allowBackup="false"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.ARIA"
+        android:largeHeap="true"
+        tools:targetApi="34">
+
+        <!-- WHY: Allow access to vendor OpenCL library for GPU-accelerated LLM inference.
+             Android namespace isolation blocks /vendor/lib64/libOpenCL.so without this.
+             required=false so the app works on devices without OpenCL (CPU fallback). -->
+        <uses-native-library
+            android:name="libOpenCL.so"
+            android:required="false" />
+
+        <!-- QNN: Allow access to vendor FastRPC library for Hexagon DSP communication.
+             libcdsprpc.so lives in /vendor/lib64/ and is listed in public.libraries.txt
+             but Android 12+ namespace isolation requires explicit declaration here.
+             Without this, the QNN HTP V75 stub cannot establish transport to the DSP,
+             causing silent CPU fallback with error 4000 (loadRemoteSymbols failed).
+             required=false so the app works on non-Qualcomm devices (CPU fallback). -->
+        <uses-native-library
+            android:name="libcdsprpc.so"
+            android:required="false" />
+
+        <!-- WHY: largeHeap=true allows 256MB+ heap for ML model data structures.
+             Phi-3-mini inference requires significant working memory. -->
+
+        <!-- ═══════════════════════════════════════════════════════════════════
+             SPLASH ACTIVITY — App Entry Point
+             ═══════════════════════════════════════════════════════════════════ -->
+
+        <activity
+            android:name=".ui.SplashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.ARIA.Splash"
+            android:screenOrientation="portrait">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+
+        <!-- ═══════════════════════════════════════════════════════════════════
+             MAIN ACTIVITY — Navigation Host
+             ═══════════════════════════════════════════════════════════════════ -->
+
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize">
+
+            <!-- WHY: singleTop prevents duplicate activities when tapping notification -->
+            <!-- WHY: portrait lock for consistent demo experience -->
+
+        </activity>
+
+        <!-- ═══════════════════════════════════════════════════════════════════
+             FOREGROUND SERVICE — ARIA SESSION
+             ═══════════════════════════════════════════════════════════════════ -->
+
+        <!--
+        RISK FLAG — HIGHEST PRIORITY:
+        foregroundServiceType="microphone" is MANDATORY for Android 14 (API 34).
+
+        Missing this declaration causes:
+        1. Service appears to start normally
+        2. Audio recording works while app is in foreground
+        3. When app backgrounds, Android 14 SILENTLY terminates the service
+        4. No crash report, no logcat error — just stops recording
+
+        This is the #1 cause of audio recording failures in production.
+
+        Validation command:
+        adb shell dumpsys activity services com.stelliq.aria | grep foregroundServiceType
+        Expected output: foregroundServiceType=microphone
+        -->
+        <service
+            android:name=".service.ARIASessionService"
+            android:foregroundServiceType="microphone"
+            android:exported="false" />
+
+        <!-- ═══════════════════════════════════════════════════════════════════
+             FILE PROVIDER FOR SHARING
+             ═══════════════════════════════════════════════════════════════════ -->
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+    </application>
+
+</manifest>

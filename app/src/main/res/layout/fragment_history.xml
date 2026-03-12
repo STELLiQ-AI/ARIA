@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  fragment_history.xml
+
+  Layout for session history list (legacy).
+  Uses RecyclerView with empty state.
+
+  Product: ARIA - AI-Powered Recording & Intelligent Analysis
+  Author:  STELLiQ Engineering
+  Version: 5.0.0
+-->
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_gradient_main">
+
+    <!-- Empty State -->
+    <TextView
+        android:id="@+id/text_empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/history_empty"
+        android:textSize="15sp"
+        android:textColor="@color/text_secondary"
+        android:fontFamily="sans-serif"
+        android:background="@null"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
+    <!-- Session List -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_history"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/spacing_small"
+        android:clipToPadding="false"
+        tools:listitem="@layout/item_session" />
+
+</FrameLayout>

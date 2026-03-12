@@ -1,0 +1,50 @@
+# ─────────────────────────────────────────────────
+# ARIA NPU — .gitignore
+# ─────────────────────────────────────────────────
+
+# Gradle build outputs
+.gradle/
+build/
+app/build/
+app/.cxx/
+
+# IDE
+.idea/
+*.iml
+local.properties
+
+# AI model files (too large for GitHub — download separately)
+*.gguf
+*.bin
+*.onnx
+app/src/main/assets/models/
+models_staging/
+
+# Native shared libraries (prebuilt — see README for sources)
+app/src/main/jniLibs/arm64-v8a/*.so
+
+# QNN SDK directories (obtain from Qualcomm)
+2.44.0.260225/
+v2.35.0.250530/
+
+# External dependencies (clone separately — see README)
+app/src/main/cpp/external/whisper.cpp/
+
+# Unsloth / training cache
+unsloth_compiled_cache/
+
+# Claude Code project memory
+.claude/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# APK outputs
+*.apk
+*.aab

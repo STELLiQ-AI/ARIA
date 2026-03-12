@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  fragment_recording.xml
+
+  Purpose: Recording screen — immersive interface with live
+           transcription, timer, and premium recording controls.
+
+  Product: ARIA - AI-Powered Recording & Intelligent Analysis
+  Author:  STELLiQ Engineering
+  Version: 5.0.0
+-->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_recording_active"
+    android:fitsSystemWindows="true"
+    android:clipToPadding="false"
+    tools:context=".ui.recording.RecordingFragment">
+
+    <!-- Top Bar — Close + Status + Invite -->
+    <ImageButton
+        android:id="@+id/btn_back"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/btn_back"
+        android:padding="12dp"
+        android:src="@drawable/ic_close"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/text_secondary" />
+
+    <!-- Status label with recording dot -->
+    <View
+        android:id="@+id/recording_indicator"
+        android:layout_width="6dp"
+        android:layout_height="6dp"
+        android:layout_marginEnd="6dp"
+        android:background="@drawable/recording_indicator_dot"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/text_status"
+        app:layout_constraintEnd_toStartOf="@id/text_status"
+        app:layout_constraintTop_toTopOf="@id/text_status"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/text_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:fontFamily="sans-serif-medium"
+        android:letterSpacing="0.02"
+        android:text="@string/status_ready"
+        android:textAllCaps="true"
+        android:textColor="@color/text_secondary"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@id/btn_back"
+        app:layout_constraintEnd_toStartOf="@id/btn_invite_device"
+        app:layout_constraintStart_toEndOf="@id/btn_back"
+        app:layout_constraintTop_toTopOf="@id/btn_back" />
+
+    <ImageButton
+        android:id="@+id/btn_invite_device"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="8dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/btn_invite_device"
+        android:padding="12dp"
+        android:src="@drawable/ic_add_device"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/btn_back"
+        app:tint="@color/text_secondary" />
+
+    <!-- Processing Progress -->
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/progress_processing"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:indeterminate="false"
+        android:max="100"
+        android:progress="0"
+        android:visibility="gone"
+        app:indicatorColor="@color/primary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_status"
+        app:trackColor="@color/surface_container_high"
+        app:trackCornerRadius="2dp"
+        app:trackThickness="2dp"
+        tools:progress="50"
+        tools:visibility="gone" />
+
+    <!-- Timer Display — Large monospace gold -->
+    <TextView
+        android:id="@+id/text_timer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@null"
+        android:fontFamily="monospace"
+        android:letterSpacing="0.04"
+        android:text="00:00"
+        android:textColor="@color/primary"
+        android:textSize="44sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_back"
+        tools:text="12:34" />
+
+    <!-- Participant Count — Badge style -->
+    <TextView
+        android:id="@+id/text_participant_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:background="@drawable/bg_status_badge"
+        android:drawablePadding="6dp"
+        android:fontFamily="sans-serif-medium"
+        android:letterSpacing="0.02"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="7dp"
+        android:text="@string/participants_count"
+        android:textColor="@color/text_data"
+        android:textSize="12sp"
+        app:drawableStartCompat="@drawable/ic_people"
+        app:drawableTint="@color/text_data"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_timer"
+        tools:text="1 participant" />
+
+    <!-- Live Transcript Panel -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_transcript"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="24dp"
+        app:cardBackgroundColor="@color/surface_container_lowest"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="0dp"
+        app:layout_constraintBottom_toTopOf="@id/btn_start_recording"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_participant_count"
+        app:strokeColor="@color/outline_variant"
+        app:strokeWidth="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <!-- Panel header -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="16dp"
+                android:paddingTop="14dp"
+                android:paddingBottom="10dp">
+
+                <View
+                    android:layout_width="3dp"
+                    android:layout_height="14dp"
+                    android:background="@color/secondary" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:background="@null"
+                    android:fontFamily="sans-serif-medium"
+                    android:letterSpacing="0.06"
+                    android:text="@string/session_transcript_label"
+                    android:textAllCaps="true"
+                    android:textColor="@color/text_tertiary"
+                    android:textSize="11sp" />
+
+            </LinearLayout>
+
+            <!-- Divider -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/divider" />
+
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/scroll_transcript"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/text_transcript"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:fontFamily="sans-serif"
+                    android:hint="@string/transcript_placeholder"
+                    android:lineSpacingMultiplier="1.6"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="14sp"
+                    tools:text="This is a sample transcript text that shows what the live transcription will look like during recording..." />
+
+            </androidx.core.widget.NestedScrollView>
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Recording Controls — Uniform 56dp circles, clean fills, no borders -->
+
+    <ImageButton
+        android:id="@+id/btn_start_recording"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginBottom="28dp"
+        android:background="@drawable/bg_record_button"
+        android:contentDescription="@string/btn_start_recording"
+        android:padding="14dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_mic"
+        app:tint="@color/on_primary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btn_pause_recording"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btn_pause_recording"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/bg_pause_button"
+        android:contentDescription="@string/btn_pause"
+        android:padding="14dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_pause"
+        android:visibility="gone"
+        app:tint="@color/text_primary"
+        app:layout_constraintBottom_toBottomOf="@id/btn_start_recording"
+        app:layout_constraintEnd_toStartOf="@id/btn_stop_recording"
+        app:layout_constraintStart_toEndOf="@id/btn_start_recording"
+        app:layout_constraintTop_toTopOf="@id/btn_start_recording"
+        tools:visibility="visible" />
+
+    <ImageButton
+        android:id="@+id/btn_stop_recording"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:background="@drawable/bg_stop_button"
+        android:contentDescription="@string/btn_stop"
+        android:padding="14dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_stop"
+        android:visibility="gone"
+        app:tint="@color/text_primary"
+        app:layout_constraintBottom_toBottomOf="@id/btn_start_recording"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btn_pause_recording"
+        app:layout_constraintTop_toTopOf="@id/btn_start_recording"
+        tools:visibility="visible" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

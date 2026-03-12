@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  bottom_nav_menu.xml
+
+  Purpose: Bottom navigation menu items.
+
+  Product: ARIA - AI-Powered Recording & Intelligent Analysis
+  Author:  STELLiQ Engineering
+  Version: 1.0.0
+-->
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/ic_nav_home"
+        android:title="@string/title_home" />
+
+    <item
+        android:id="@+id/sessionsFragment"
+        android:icon="@drawable/ic_nav_sessions"
+        android:title="@string/title_sessions" />
+
+    <item
+        android:id="@+id/settingsFragment"
+        android:icon="@drawable/ic_nav_settings"
+        android:title="@string/title_settings" />
+
+</menu>

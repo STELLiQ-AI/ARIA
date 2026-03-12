@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  file_paths.xml
+
+  FileProvider path configuration for sharing AAR summaries and exports.
+
+  @author STELLiQ Engineering
+  @version 0.1.0
+  @since ARIA Demo Build — 2026-03-02
+-->
+<paths>
+    <!-- External files directory for model storage and exports -->
+    <external-files-path
+        name="models"
+        path="models/" />
+
+    <!-- Cache directory for temporary export files -->
+    <cache-path
+        name="exports"
+        path="exports/" />
+</paths>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Bottom navigation — barely visible top hairline -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/nav_bar_bg" />
+        </shape>
+    </item>
+    <item
+        android:height="0.5dp"
+        android:gravity="top">
+        <shape android:shape="rectangle">
+            <solid android:color="#0AFFFFFF" />
+        </shape>
+    </item>
+</layer-list>

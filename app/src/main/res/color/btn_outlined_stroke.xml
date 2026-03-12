@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Outlined button stroke — hairline when enabled, nearly invisible when disabled -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:color="#06FFFFFF" android:state_enabled="false"/>
+    <item android:color="@color/outline_variant"/>
+</selector>

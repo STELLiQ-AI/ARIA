@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Pause button — subtle frosted surface with hairline border and ripple -->
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="#18FFFFFF">
+    <item android:id="@android:id/mask">
+        <shape android:shape="oval">
+            <solid android:color="#FFFFFF" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="#1E1828" />
+            <stroke
+                android:width="0.5dp"
+                android:color="#18FFFFFF" />
+        </shape>
+    </item>
+</ripple>

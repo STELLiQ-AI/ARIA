@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    dialog_about.xml
+
+    Purpose: About dialog showing app identity, version, and legal info.
+
+    Product: ARIA - AI-Powered Recording & Intelligent Analysis
+    Author:  STELLiQ Engineering
+    Version: 5.0.0
+-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:paddingHorizontal="32dp"
+    android:paddingTop="36dp"
+    android:paddingBottom="8dp">
+
+    <!-- App Icon -->
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/aria_logo"
+        app:tint="@color/primary"
+        android:contentDescription="@string/content_desc_app_logo" />
+
+    <!-- App Name -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:text="@string/product_name_acronym"
+        android:textColor="@color/primary"
+        android:textSize="30sp"
+        android:fontFamily="sans-serif-medium"
+        android:letterSpacing="0.12" />
+
+    <!-- Full Name -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="@string/app_full_name"
+        android:textColor="@color/text_secondary"
+        android:textSize="14sp"
+        android:fontFamily="sans-serif"
+        android:gravity="center" />
+
+    <!-- Version -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_status_badge"
+        android:paddingHorizontal="18dp"
+        android:paddingVertical="7dp"
+        android:text="@string/app_version"
+        android:textColor="@color/text_data"
+        android:textSize="13sp"
+        android:fontFamily="monospace" />
+
+    <!-- Divider -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="28dp"
+        android:background="@color/divider" />
+
+    <!-- Info Sections -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="24dp">
+
+        <!-- Privacy -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PRIVACY"
+            android:textColor="@color/primary"
+            android:textSize="11sp"
+            android:fontFamily="sans-serif-medium"
+            android:letterSpacing="0.08" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="All processing happens on-device. Your recordings, transcripts, and summaries never leave your phone. No cloud. No accounts. No tracking."
+            android:textColor="@color/text_secondary"
+            android:textSize="14sp"
+            android:lineSpacingMultiplier="1.5" />
+
+        <!-- AI Models -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="AI MODELS"
+            android:textColor="@color/primary"
+            android:textSize="11sp"
+            android:fontFamily="sans-serif-medium"
+            android:letterSpacing="0.08" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Transcription: Whisper Base.en (OpenAI)\nSummarization: ARIA AAR 1B (STELLiQ)\nVoice Detection: Silero VAD"
+            android:textColor="@color/text_secondary"
+            android:textSize="14sp"
+            android:lineSpacingMultiplier="1.5" />
+
+    </LinearLayout>
+
+    <!-- Divider -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="24dp"
+        android:background="@color/divider" />
+
+    <!-- Company -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:text="@string/company_name"
+        android:textColor="@color/text_tertiary"
+        android:textSize="12sp"
+        android:fontFamily="sans-serif-medium"
+        android:letterSpacing="0.08" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="@string/splash_copyright"
+        android:textColor="@color/text_tertiary"
+        android:textSize="10sp"
+        android:alpha="0.6" />
+
+</LinearLayout>

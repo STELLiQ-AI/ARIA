@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Outer glow ring for record button — luminous gold aura -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Soft radial glow fill -->
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="#14F0A030" />
+            <size
+                android:width="100dp"
+                android:height="100dp" />
+        </shape>
+    </item>
+    <!-- Sharp ring stroke -->
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="@android:color/transparent" />
+            <stroke
+                android:width="2dp"
+                android:color="#50F0A030" />
+            <size
+                android:width="100dp"
+                android:height="100dp" />
+        </shape>
+    </item>
+</layer-list>

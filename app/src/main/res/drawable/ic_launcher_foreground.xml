@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    ic_launcher_foreground.xml
+
+    Purpose: Adaptive icon foreground for ARIA app launcher icon.
+             Features the ARIA network node logo design.
+
+    Product: ARIA - AI-Powered Recording & Intelligent Analysis
+
+    Author:  STELLiQ Engineering
+    Version: 2.0.0
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Background circle (inside safe zone) -->
+    <path
+        android:fillColor="#1A1525"
+        android:pathData="M54,54m-38,0a38,38 0,1 1,76 0a38,38 0,1 1,-76 0" />
+
+    <!-- Connection lines from center to outer nodes -->
+    <!-- Top node line -->
+    <path
+        android:strokeColor="#FF9100"
+        android:strokeWidth="2"
+        android:pathData="M54,54 L54,28" />
+
+    <!-- Top-right node line -->
+    <path
+        android:strokeColor="#FF9100"
+        android:strokeWidth="2"
+        android:pathData="M54,54 L76.5,41" />
+
+    <!-- Bottom-right node line -->
+    <path
+        android:strokeColor="#FF9100"
+        android:strokeWidth="2"
+        android:pathData="M54,54 L76.5,67" />
+
+    <!-- Bottom node line -->
+    <path
+        android:strokeColor="#FF9100"
+        android:strokeWidth="2"
+        android:pathData="M54,54 L54,80" />
+
+    <!-- Bottom-left node line -->
+    <path
+        android:strokeColor="#FF9100"
+        android:strokeWidth="2"
+        android:pathData="M54,54 L31.5,67" />
+
+    <!-- Top-left node line -->
+    <path
+        android:strokeColor="#FF9100"
+        android:strokeWidth="2"
+        android:pathData="M54,54 L31.5,41" />
+
+    <!-- Center node (largest) -->
+    <path
+        android:fillColor="#FF9100"
+        android:pathData="M54,54m-8,0a8,8 0,1 1,16 0a8,8 0,1 1,-16 0" />
+
+    <!-- Top node -->
+    <path
+        android:fillColor="#FF9100"
+        android:pathData="M54,28m-6,0a6,6 0,1 1,12 0a6,6 0,1 1,-12 0" />
+
+    <!-- Top-right node -->
+    <path
+        android:fillColor="#FF9100"
+        android:pathData="M76.5,41m-6,0a6,6 0,1 1,12 0a6,6 0,1 1,-12 0" />
+
+    <!-- Bottom-right node -->
+    <path
+        android:fillColor="#FF9100"
+        android:pathData="M76.5,67m-6,0a6,6 0,1 1,12 0a6,6 0,1 1,-12 0" />
+
+    <!-- Bottom node -->
+    <path
+        android:fillColor="#FF9100"
+        android:pathData="M54,80m-6,0a6,6 0,1 1,12 0a6,6 0,1 1,-12 0" />
+
+    <!-- Bottom-left node -->
+    <path
+        android:fillColor="#FF9100"
+        android:pathData="M31.5,67m-6,0a6,6 0,1 1,12 0a6,6 0,1 1,-12 0" />
+
+    <!-- Top-left node -->
+    <path
+        android:fillColor="#FF9100"
+        android:pathData="M31.5,41m-6,0a6,6 0,1 1,12 0a6,6 0,1 1,-12 0" />
+
+</vector>
